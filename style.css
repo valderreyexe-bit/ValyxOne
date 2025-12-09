@@ -166,6 +166,11 @@ body {
     width: 100%;
     border-radius: 12px;
     margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    }
+
+    .product img:hover {
+    transform: scale(1.18); /* agranda sin desbordar */
     }
 
     .product h2 {
@@ -431,6 +436,7 @@ body {
         white-space: nowrap;
     }
     }
+
 
 
 
