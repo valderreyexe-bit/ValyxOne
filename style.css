@@ -446,12 +446,31 @@ body {
     }
     }
 
+    .flavor-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 15px 0;
+}
 
+.flavor-buttons button {
+    background: #111;
+    color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
 
+.flavor-buttons button:hover {
+    background: #222;
+}
 
-
-
-
-
-
-
+.flavor-buttons button.active {
+    background: linear-gradient(135deg, #00ff0d, #0c5e02);
+    color: #fff;
+    border: 1px solid #00ff0d;
+    box-shadow: 0 0 15px rgba(0, 255, 13, 0.5);
+    transform: scale(1.05);
+}
