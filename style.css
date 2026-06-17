@@ -150,20 +150,24 @@ body {
     border: 1px solid rgb(255, 255, 255);
     border-radius: 20px;
     padding: 20px;
-    max-width: 310px;
-    width: 90%;
+    max-width: 340px;
+    width: 88%;
+    margin: 0 auto;
     text-align: center;
     color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.6);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 580px;
+    min-height: auto;
     height: auto;
     }
 
 .product img {
-    width: 100%;
+    width: 85%;
+    max-width: 260px;
+    margin: 0 auto 15px;
+    display: block;
     border-radius: 12px;
     margin-bottom: 15px;
     transition: transform 0.3s ease;
