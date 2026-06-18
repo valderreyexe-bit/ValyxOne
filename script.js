@@ -1,142 +1,150 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANTA VAPE</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="IMG/logo-modified.png" type="image/png">
-    <link rel="apple-touch-icon" href="IMG/perfil3.png">
+console.log("Volutt landing page cargada correctamente.");
+
+/* ==========================
+   POPUP +18
+========================== */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const popup = document.getElementById("age-verification");
+    const btnSi = document.getElementById("btn-si");
+    const btnNo = document.getElementById("btn-no");
+
+    if (popup && btnSi && btnNo) {
+
+        document.body.classList.add("popup-active");
+
+        btnSi.addEventListener("click", () => {
+            popup.style.display = "none";
+            document.body.classList.remove("popup-active");
+        });
+
+        btnNo.addEventListener("click", () => {
+            window.location.href = "https://www.google.com";
+        });
+    }
+
+});
 
 
-</head>
-<body>
-    
-    <div class="background-image"></div>
+/* ==========================
+   SABORES
+========================== */
 
-    <div class="container">
-        <div class="logo-section">
-            <img src="IMG/perfil3.png" alt="Santa Logo" class="logo">
-            <h1 class="title"></h1>
+const sabores = {
 
-        </div>
+    "Blue Razz Ice": {
+        imagen: "IMG/durazno+.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Blue Razz Ice",
+        descripcion: "Frambuesa azul dulce con un intenso efecto ice."
+    },
 
-        <div class="buttons-section">
-        <!-- Botón WhatsApp -->
-        <a href="https://whatsapp.com/channel/0029VbCoXMnAojYybnqzSl1Y" class="btn" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp"></i> Canal de WhatsApp
-        </a>
+    "Blueberry Pom Slushy": {
+        imagen: "IMG/mangomagic.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Blueberry Pom Slushy",
+        descripcion: "Mezcla frutal de arándano y granada con una frescura estilo granizado."
+    },
 
-        <!-- Botón Facebook -->
-        <a href="https://www.facebook.com" class="btn" target="_blank" rel="noopener">
-            <i class="fab fa-facebook-f"></i> Proximamente en Facebook
-        </a>
+    "Cool Mentol": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Cool Mentol",
+        descripcion: "Sabor intenso a mentol con una sensación extra refrescante."
+    },
 
-        <a href="https://www.instagram.com/valyx.one/" class="btn" target="_blank" rel="noopener">
-            <i class="fab fa-instagram"></i> Seguinos en Instagram
-        </a>
+    "La Grape": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - La Grape",
+        descripcion: "Uva dulce y jugosa con un perfil suave y equilibrado."
+    },
 
-        </div>
+    "PineApple Lime": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - PineApple Lime",
+        descripcion: "Piña tropical acompañada por el toque cítrico y fresco del limón."
+    },
 
-        <!-- Banner institucional -->
-        <div class="stock-banner">
-        <p>¡STOCK DISPONIBLE!</p>
-        </div>
+    "Raspberry Watermelon": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Raspberry Watermelon",
+        descripcion: "Combinación de frambuesa dulce y sandía jugosa perfectamente balanceada."
+    },
 
-        
+    "Scary Berry": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Scary Berry",
+        descripcion: "Explosión de frutos rojos con un sabor intenso y refrescante."
+    },
 
+    "Watermelon Ice": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Watermelon Ice",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
 
-<div class="product">
-    <h2 id="product-title">
-        ELFBAR TRIO 40K PUFFS - Blue Razz Ice
-    </h2>
-    <img id="product-image" src="IMG/mangomagic.png" alt="ELFBAR">
+    "Sour Strawberry Dragon Fruit": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Sour Strawberry Dragon Fruit",
+        descripcion: "Fresa ácida combinada con la suavidad exótica de la fruta del dragón."
+    },
 
-    <p class="flavor-label">Sabores disponibles</p>
+};
 
-    <div class="flavor-buttons">
-        <button onclick="seleccionarSabor('Blue Razz Ice')">
-            Blue Razz Ice
-        </button>
+let saborSeleccionado = "Blue Razz Ice";
 
-        <button onclick="seleccionarSabor('Blueberry Pom Slushy')">
-            Blueberry Pom Slushy
-        </button>
+function seleccionarSabor(sabor) {
 
-        <button onclick="seleccionarSabor('Cool Mentol')">
-            Cool Mentol
-        </button>
+    // Quitar selección anterior
+document.querySelectorAll(".flavor-buttons button").forEach(btn => {
+    btn.classList.remove("active");
+});
 
-        <button onclick="seleccionarSabor('La Grape')">
-            La Grape
-        </button>
+// Marcar botón seleccionado
+document.querySelectorAll(".flavor-buttons button").forEach(btn => {
+    if (btn.textContent.trim() === sabor) {
+        btn.classList.add("active");
+    }
+});
 
-        <button onclick="seleccionarSabor('PineApple Lime')">
-          PineApple Lime
-        </button>
+    saborSeleccionado = sabor;
 
-        <button onclick="seleccionarSabor('Raspberry Watermelon')">
-            Raspberry Watermelon
-        </button>
+    const textoSabor = document.getElementById("selected-flavor");
+    const imagen = document.getElementById("product-image");
+    const titulo = document.getElementById("product-title");
+    const descripcion = document.getElementById("product-description");
 
-        <button onclick="seleccionarSabor('Scary Berry')">
-            Scary Berry
-        </button>
+    if (textoSabor) {
+        textoSabor.textContent =
+            "Sabor seleccionado: " + sabor;
+    }
 
-        <button onclick="seleccionarSabor('Watermelon Ice')">
-            Watermelon Ice
-        </button>
+    if (imagen) {
+        imagen.src = sabores[sabor].imagen;
+    }
 
-        <button onclick="seleccionarSabor('Sour Strawberry Dragon Fruit')">
-            Sour Strawberry Dragon Fruit
-        </button>
-    </div>
+    if (titulo) {
+        titulo.textContent = sabores[sabor].titulo;
+    }
 
-    <p id="product-description">
-        Descripción de Blue Razz Ice.
-    </p>
+    if (descripcion) {
+        descripcion.textContent = sabores[sabor].descripcion;
+    }
 
+    actualizarWhatsApp();
+}
 
-    <div class="product-footer">
+function actualizarWhatsApp() {
 
-        <span class="price">STOCK</span>
+    const buyBtn = document.getElementById("buy-btn");
 
-        <a id="buy-btn" href="#" class="product-buy">
-            Adquirir
-        </a>
+    if (!buyBtn) return;
 
-    </div>
+    const mensaje =
+        `Hola, quiero comprar un ELFBAR TRIO 40K PUFFS sabor ${saborSeleccionado}`;
 
-</div>
+    buyBtn.href =
+        `https://wa.me/5492966611389?text=${encodeURIComponent(mensaje)}`;
+}
 
-
-
-
-
-    <div id="age-verification" class="popup-overlay">
-    <div class="popup-box">
-        <img src="IMG/perfil3.png" alt="Logo Tienda Vapor" class="popup-logo">
-         
-        <h2 class="popup-subtitle">VERIFICACIÓN DE MAYORÍA DE EDAD</h2>
-        <p class="popup-text">
-        Los productos disponibles en nuestra web tienen restricción de edad y están destinados exclusivamente a adultos mayores de edad.
-        
-        <h3 class="popup-question">¿USTED ES MAYOR DE 18 AÑOS?</h3>
-
-        </p>
-        <div class="popup-actions">
-        <button id="btn-no" class="btn-decline">NO</button>
-        <button id="btn-si" class="btn-accept">SI</button>
-        </div>
-    </div>
-    </div>
-
-
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+document.addEventListener("DOMContentLoaded", () => {
+    seleccionarSabor("Blue Razz Ice");
+});
