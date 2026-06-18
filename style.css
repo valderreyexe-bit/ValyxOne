@@ -441,9 +441,8 @@ body {
     .flavor-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
     justify-content: center;
-    margin: 15px 0;
+    gap: 8px;
 }
 
 .flavor-buttons button {
