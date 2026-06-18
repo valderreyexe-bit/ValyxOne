@@ -39,17 +39,53 @@ const sabores = {
         descripcion: "Frambuesa azul dulce con un intenso efecto ice."
     },
 
-    "Scary Berry": {
+    "Blueberry Pom Slushy": {
         imagen: "IMG/mangomagic.png",
-        titulo: "ELFBAR TRIO 40K PUFFS - Scary Berry",
+        titulo: "ELFBAR TRIO 40K PUFFS - Blueberry Pom Slushy",
         descripcion: "Mezcla intensa de frutos rojos con una frescura equilibrada."
+    },
+
+    "Cool Mentol": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Cool Mentol",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
+
+    "La Grape": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - La Grape",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
+
+    "PinneApple Lime": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - PinneApple Lime",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
+
+    "Raspberry Watermelon": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Raspberry Watermelon",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
+
+    "Scary Berry": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Scary Berry",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
     },
 
     "Watermelon Ice": {
         imagen: "IMG/tigers.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Watermelon Ice",
         descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
-    }
+    },
+
+    "Sour Strawberry Dragon Fruit": {
+        imagen: "IMG/tigers.png",
+        titulo: "ELFBAR TRIO 40K PUFFS - Sour Strawberry Dragon Fruit",
+        descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
+    },
 
 };
 
