@@ -469,13 +469,43 @@ body {
 #product-description {
     font-size: 0.95em;
     line-height: 1.5;
-    color: #dcdcdc;
+    color: #ffffff;
     min-height: 60px;
-    margin: 10px 0;
+    margin: 12px 0;
+    padding: 10px;
+    background: rgba(0, 255, 68, 0.08);
+    border-left: 3px solid #00ff44;
+    border-radius: 8px;
+    text-align: left;
 }
 
 #selected-flavor {
     font-size: 0.85em;
     color: #00ff88;
     margin-bottom: 15px;
+}
+
+.flavor-label {
+    font-size: 17px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #00ff44;
+    margin: 15px 0 12px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 255, 68, 0.8);
+}
+
+.flavor-label {
+    position: relative;
+}
+
+.flavor-label::before,
+.flavor-label::after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background: #00ff44;
+    margin: 0 10px;
+    vertical-align: middle;
 }
