@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 const sabores = {
 
     "Blue Razz Ice": {
-        imagen: "IMG/durazno+.png",
+        imagen: "IMG/bluerazz.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Blue Razz Ice",
         descripcion: "Frambuesa azul dulce con un intenso efecto ice."
     },
