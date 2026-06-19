@@ -180,7 +180,7 @@ body {
 /* zoom automático en pantallas chicas (celulares) */
 @media (max-width: 768px) {
     .product img {
-        transform: scale(1.1); /* siempre agrandadas en móvil */
+        transform: scale(1.2); /* siempre agrandadas en móvil */
     }
 }
 
