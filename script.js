@@ -40,49 +40,49 @@ const sabores = {
     },
 
     "Blueberry Pom Slushy": {
-        imagen: "IMG/mangomagic.png",
+        imagen: "IMG/pomslushy.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Blueberry Pom Slushy",
         descripcion: "Mezcla frutal de arándano y granada con una frescura estilo granizado."
     },
 
     "Cool Mentol": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/coolmentol.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Cool Mentol",
         descripcion: "Sabor intenso a mentol con una sensación extra refrescante."
     },
 
     "La Grape": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/lagrape.png",
         titulo: "ELFBAR TRIO 40K PUFFS - La Grape",
         descripcion: "Uva dulce y jugosa con un perfil suave y equilibrado."
     },
 
     "PineApple Lime": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/pineapplelime.png",
         titulo: "ELFBAR TRIO 40K PUFFS - PineApple Lime",
         descripcion: "Piña tropical acompañada por el toque cítrico y fresco del limón."
     },
 
     "Raspberry Watermelon": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/raspberrywatermelon.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Raspberry Watermelon",
         descripcion: "Combinación de frambuesa dulce y sandía jugosa perfectamente balanceada."
     },
 
     "Scary Berry": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/scarryberry.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Scary Berry",
         descripcion: "Explosión de frutos rojos con un sabor intenso y refrescante."
     },
 
     "Watermelon Ice": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/watermelon.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Watermelon Ice",
         descripcion: "Sandía dulce y jugosa acompañada por un refrescante toque helado."
     },
 
     "Sour Strawberry Dragon Fruit": {
-        imagen: "IMG/tigers.png",
+        imagen: "IMG/sourstraw.png",
         titulo: "ELFBAR TRIO 40K PUFFS - Sour Strawberry Dragon Fruit",
         descripcion: "Fresa ácida combinada con la suavidad exótica de la fruta del dragón."
     },
