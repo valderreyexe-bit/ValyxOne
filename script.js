@@ -192,7 +192,6 @@ const productos = {
 document.querySelectorAll(".product").forEach(card => {
 
     const tipoProducto = card.dataset.product;
-
     const botones = card.querySelectorAll(".flavor-buttons button");
 
     botones.forEach(btn => {
@@ -203,48 +202,49 @@ document.querySelectorAll(".product").forEach(card => {
             btn.classList.add("active");
 
             const sabor = btn.textContent.trim();
-
             const data = productos[tipoProducto][sabor];
 
             if (!data) return;
 
             card.querySelector(".product-title").textContent = data.titulo;
-
             card.querySelector(".product-image").src = data.imagen;
-
-            card.querySelector(".product-description").textContent =
-                data.descripcion;
+            card.querySelector(".product-description").textContent = data.descripcion;
 
             const buyBtn = card.querySelector(".product-buy-btn");
 
             buyBtn.href =
-            `https://wa.me/5492216205269?text=${encodeURIComponent(
-                `Hola, quiero comprar un ${data.titulo}`
-            )}`;
-            
+                `https://wa.me/5492216205269?text=${encodeURIComponent(
+                    `Hola, quiero comprar un ${data.titulo}`
+                )}`;
+
             buyBtn.onclick = () => {
-            
-                gtag('event', 'consulta_whatsapp', {
-                    event_category: 'Ventas',
-                    event_label: data.titulo,
-                    value: 1
-                });
-            
-            };
-            
+
+                if (typeof gtag === "function") {
+                    gtag('event', 'consulta_whatsapp', {
+                        event_category: 'Ventas',
+                        event_label: data.titulo,
+                        value: 1
                     });
-            
-                });
-            
-            });
-            
-            document.querySelectorAll(".product").forEach(card => {
-            
-                const primerBoton =
-                    card.querySelector(".flavor-buttons button");
-            
-                if (primerBoton) {
-                    primerBoton.click();
                 }
-            
-            });
+
+            };
+
+        });
+
+    });
+
+});
+
+/* ==========================
+   ACTIVAR PRIMER SABOR
+========================== */
+
+document.querySelectorAll(".product").forEach(card => {
+
+    const primerBoton = card.querySelector(".flavor-buttons button");
+
+    if (primerBoton) {
+        primerBoton.click();
+    }
+
+});
