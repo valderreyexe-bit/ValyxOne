@@ -230,7 +230,7 @@ document.querySelectorAll(".product").forEach(card => {
                     value: 1
              });
 
-        });
+        };
 
     });
 
