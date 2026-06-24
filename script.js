@@ -221,6 +221,14 @@ document.querySelectorAll(".product").forEach(card => {
                 `https://wa.me/5492216205269?text=${encodeURIComponent(
                     `Hola, quiero comprar un ${data.titulo}`
                 )}`;
+           
+            buyBtn.onclick = () => {
+            
+                gtag('event', 'consulta_whatsapp', {
+                    event_category: 'Ventas',
+                    event_label: data.titulo,
+                    value: 1
+             });
 
         });
 
