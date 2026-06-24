@@ -218,31 +218,33 @@ document.querySelectorAll(".product").forEach(card => {
             const buyBtn = card.querySelector(".product-buy-btn");
 
             buyBtn.href =
-                `https://wa.me/5492216205269?text=${encodeURIComponent(
-                    `Hola, quiero comprar un ${data.titulo}`
-                )}`;
-           
+            `https://wa.me/5492216205269?text=${encodeURIComponent(
+                `Hola, quiero comprar un ${data.titulo}`
+            )}`;
+            
             buyBtn.onclick = () => {
             
                 gtag('event', 'consulta_whatsapp', {
                     event_category: 'Ventas',
                     event_label: data.titulo,
                     value: 1
-             });
-
-        };
-
-    });
-
-});
-
-document.querySelectorAll(".product").forEach(card => {
-
-    const primerBoton =
-        card.querySelector(".flavor-buttons button");
-
-    if (primerBoton) {
-        primerBoton.click();
-    }
-
-});
+                });
+            
+            };
+            
+                    });
+            
+                });
+            
+            });
+            
+            document.querySelectorAll(".product").forEach(card => {
+            
+                const primerBoton =
+                    card.querySelector(".flavor-buttons button");
+            
+                if (primerBoton) {
+                    primerBoton.click();
+                }
+            
+            });
