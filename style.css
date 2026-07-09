@@ -340,44 +340,141 @@ body {
 
 
 
-    .stock-banner {
-    background: linear-gradient(135deg, #000000, #2326ffbe);
-    color: white;
-    text-align: center;
-    text-justify: inter-word;
-    padding: 16px 20px;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.1em;
-    letter-spacing: 0.5px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-    width: 100%;
-    max-width: 400px;
-    margin: 40px auto;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-sizing: border-box;
-    margin-bottom: 12px;
-    line-height: 1.5;
+.stock-banner{
+
+    width:min(92%,420px);
+
+    margin:clamp(20px,4vw,35px) auto
+           clamp(10px,2vw,18px);
+
+    padding:clamp(16px,3vw,22px)
+            clamp(14px,4vw,20px);
+
+    border-radius:18px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(0,18,45,.92),
+        rgba(12,12,30,.95)
+    );
+
+    border:1px solid rgba(0,191,255,.25);
+
+    box-shadow:0 0 25px rgba(0,191,255,.15);
+
+    transition:.3s;
+}
+
+.stock-banner:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 35px rgba(0,191,255,.30);
+}
+
+.stock-banner p{
+
+    margin:0;
+
+    font-family:'Archivo Black',sans-serif;
+
+    font-size:clamp(1rem,3vw,1.2rem);
+
+    letter-spacing:.08em;
+
+    color:#fff;
+
+    line-height:1.2;
+}
+
+.stock-banner span{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#9fdfff;
+
+    font-size:clamp(.72rem,2vw,.85rem);
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    line-height:1.4;
+}
+
+.stock-banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:100%;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #00bfff,
+        transparent
+    );
+
+    animation:scanLine 2.5s linear infinite;
+}
+
+.stock-banner::after{
+
+    content:"⌄";
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:6px;
+
+    transform:translateX(-50%);
+
+    color:#00bfff;
+
+    font-size:clamp(24px,5vw,32px);
+
+    animation:scrollArrow 1.3s infinite;
+}
+
+@keyframes scanLine{
+
+    from{left:-100%;}
+    to{left:100%;}
+
+}
+
+@keyframes scrollArrow{
+
+    0%{
+        transform:translate(-50%,0);
+        opacity:.35;
     }
 
-
-    @media (max-width: 600px) {
-    .stock-banner {
-        animation: fadeSlideUp 0.8s ease-out;
+    50%{
+        transform:translate(-50%,8px);
+        opacity:1;
     }
 
-    @keyframes fadeSlideUp {
-        0% {
-        opacity: 0;
-        transform: translateY(30px);
-        }
-        100% {
-        opacity: 1;
-        transform: translateY(0);
-        }
+    100%{
+        transform:translate(-50%,0);
+        opacity:.35;
     }
-    }
+
+}
 
 
 
@@ -918,4 +1015,71 @@ body {
     clip: rect(0,0,0,0);
     white-space: nowrap;
     border: 0;
+}
+
+
+/* ==========================
+   PRODUCTO NUEVO (IGNITE)
+========================== */
+
+.product.new-product {
+    position: relative;
+    overflow: hidden;
+
+    border: 2px solid #00bfff;
+
+    background: linear-gradient(
+        180deg,
+        rgba(0, 191, 255, 0.08),
+        rgba(0, 0, 0, 0.70)
+    );
+
+    box-shadow:
+        0 0 20px rgba(0,191,255,.25),
+        0 0 45px rgba(0,191,255,.15);
+
+    transition: all .35s ease;
+}
+
+.product.new-product:hover {
+
+    transform: translateY(-6px);
+
+    border-color: #4fd6ff;
+
+    box-shadow:
+        0 0 30px rgba(0,191,255,.45),
+        0 15px 45px rgba(0,0,0,.45);
+}
+
+.product.new-product::before {
+
+    content: "NUEVO";
+
+    position: absolute;
+
+        top: 8px;
+        right: -55px;
+
+    width: 170px;
+
+    padding: 7px 0;
+
+    background: linear-gradient(90deg,#00bfff,#007bff);
+    text-shadow: 0 0 6px rgba(255,255,255,.35);
+    color: #fff;
+
+    font-size: .70rem;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+    transform: rotate(45deg);
+
+    box-shadow: 0 0 20px rgba(0,191,255,.35);
+
+    z-index: 5;
 }
