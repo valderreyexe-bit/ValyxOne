@@ -1,4 +1,4 @@
-console.log("Volutt landing page cargada correctamente.");
+console.log("Santa Vape cargado correctamente.");
 
 /* ==========================
    POPUP +18
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             localStorage.setItem("mayorEdad", "si");
 
-            popup.remove();
+            popup.style.display = "none";
 
             document.body.classList.remove("popup-active");
         });
@@ -38,10 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Protección extra por si algo falla
-    setTimeout(() => {
-        document.body.classList.remove("popup-active");
-    }, 3000);
 
 });
 
@@ -51,6 +47,41 @@ document.addEventListener("DOMContentLoaded", function () {
 ========================== */
 
 const productos = {
+
+ignite: {
+
+    "Peach Mango Watermelon": {
+        imagen: "IMG/ignite.webp",
+        titulo: "IGNITE ICE 40K PUFFS - Peach Mango Watermelon",
+        descripcion: "Una combinación tropical de durazno, mango y sandía. Dulce, jugosa y con un refrescante efecto ice."
+    },
+
+    "Tutti Fruit Mix": {
+        imagen: "IMG/ignite.webp",
+        titulo: "IGNITE ICE 40K PUFFS - Tutti Fruit Mix",
+        descripcion: "Mezcla intensa de frutas dulces con un perfil equilibrado y refrescante. Ideal para quienes buscan un sabor completo y diferente."
+    },
+
+    "Cherry Watermelon": {
+        imagen: "IMG/ignite.webp",
+        titulo: "IGNITE ICE 40K PUFFS - Cherry Watermelon",
+        descripcion: "La intensidad de la cereza se combina con la frescura de la sandía para lograr un sabor dulce, frutal y muy refrescante."
+    },
+
+    "Pineapple Kiwi Dragon Fruit": {
+        imagen: "IMG/ignite.webp",
+        titulo: "IGNITE ICE 40K PUFFS - Pineapple Kiwi Dragon Fruit",
+        descripcion: "Ananá, kiwi y fruta del dragón en una mezcla tropical con notas dulces, ácidas y un final helado."
+    },
+
+    "Watermelon": {
+        imagen: "IMG/ignite.webp",
+        titulo: "IGNITE ICE 40K PUFFS - Watermelon",
+        descripcion: "Sandía madura con un efecto ice suave. Un clásico refrescante y muy equilibrado."
+    }
+
+},
+
 
     trio: {
 
@@ -192,6 +223,7 @@ const productos = {
 document.querySelectorAll(".product").forEach(card => {
 
     const tipoProducto = card.dataset.product;
+
     const botones = card.querySelectorAll(".flavor-buttons button");
 
     botones.forEach(btn => {
@@ -202,13 +234,17 @@ document.querySelectorAll(".product").forEach(card => {
             btn.classList.add("active");
 
             const sabor = btn.textContent.trim();
-            const data = productos[tipoProducto][sabor];
+
+            const data = productos[tipoProducto]?.[sabor];
 
             if (!data) return;
 
             card.querySelector(".product-title").textContent = data.titulo;
+
             card.querySelector(".product-image").src = data.imagen;
-            card.querySelector(".product-description").textContent = data.descripcion;
+
+            card.querySelector(".product-description").textContent =
+                data.descripcion;
 
             const buyBtn = card.querySelector(".product-buy-btn");
 
@@ -217,31 +253,16 @@ document.querySelectorAll(".product").forEach(card => {
                     `Hola, quiero comprar un ${data.titulo}`
                 )}`;
 
-            buyBtn.onclick = () => {
-
-                if (typeof gtag === "function") {
-                    gtag('event', 'consulta_whatsapp', {
-                        event_category: 'Ventas',
-                        event_label: data.titulo,
-                        value: 1
-                    });
-                }
-
-            };
-
         });
 
     });
 
 });
 
-/* ==========================
-   ACTIVAR PRIMER SABOR
-========================== */
-
 document.querySelectorAll(".product").forEach(card => {
 
-    const primerBoton = card.querySelector(".flavor-buttons button");
+    const primerBoton =
+        card.querySelector(".flavor-buttons button");
 
     if (primerBoton) {
         primerBoton.click();
