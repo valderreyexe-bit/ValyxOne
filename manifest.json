@@ -1,0 +1,20 @@
+{
+  "name": "Santa Vape",
+  "short_name": "Santa Vape",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#090A0C",
+  "theme_color": "#0052FF",
+  "icons": [
+    {
+      "src": "IMG/perfil3.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "IMG/perfil3.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}
