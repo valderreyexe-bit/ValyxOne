@@ -12,7 +12,7 @@ const productos = {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Peach Mango Watermelon",
             descripcion: "Una combinación tropical de durazno, mango y sandía. Dulce, jugosa y con un refrescante efecto ice.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "Tutti Fruit Mix": {
             imagen: "IMG/ignite.webp",
