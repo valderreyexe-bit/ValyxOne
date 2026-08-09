@@ -104,7 +104,7 @@ const productos = {
             imagen: "IMG/greenappleslush.webp",
             titulo: "ELFBAR SUMMER EDITION - Green Apple Slush",
             descripcion: "La combinación perfecta de manzana verde jugosa y efecto granizado. Dulce, refrescante y llena de sabor.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "Black Mint": {
             imagen: "IMG/blackmint.webp",
@@ -117,7 +117,7 @@ const productos = {
             imagen: "IMG/lostgrape.webp",
             titulo: "LOST MARY 35K - Grapefruit Passion Guava",
             descripcion: "Una mezcla tropical de pomelo, maracuyá y guayaba. Dulce, exótica y con un toque cítrico refrescante.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "Green Apple Ice": {
             imagen: "IMG/lostgreen.webp",
