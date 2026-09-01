@@ -18,23 +18,25 @@ const productos = {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Tutti Fruit Mix",
             descripcion: "Mezcla intensa de frutas dulces con un perfil equilibrado y refrescante. Ideal para quienes buscan un sabor completo y diferente.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "Cherry Watermelon": {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Cherry Watermelon",
             descripcion: "La intensidad de la cereza se combina con la frescura de la sandía para lograr un sabor dulce, frutal y muy refrescante.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "Pineapple Kiwi Dragon Fruit": {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Pineapple Kiwi Dragon Fruit",
             descripcion: "Ananá, kiwi y fruta del dragón en una mezcla tropical con notas dulces, ácidas y un final helado."
+etiqueta: "❌️SIN STOCK❌️"
         },
         "Watermelon": {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Watermelon",
             descripcion: "Sandía madura con un efecto ice suave. Un clásico refrescante y muy equilibrado."
+etiqueta: "❌️SIN STOCK❌️"
         }
     },
     trio: {
@@ -52,7 +54,7 @@ const productos = {
             imagen: "IMG/coolmentol.webp",
             titulo: "ELFBAR TRIO 40K PUFFS - Cool Mentol",
             descripcion: "Mentol puro con una frescura intensa y duradera. Ideal para quienes buscan una sensación ultra refrescante.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         },
         "La Grape": {
             imagen: "IMG/lagrape.webp",
@@ -68,6 +70,7 @@ const productos = {
             imagen: "IMG/raspberrywatermelon.webp",
             titulo: "ELFBAR TRIO 40K PUFFS - Raspberry Watermelon",
             descripcion: "La dulzura de la sandía se mezcla con la intensidad de la frambuesa. Frutal, jugosa y deliciosa."
+etiqueta: "❌️SIN STOCK❌️"
         },
         "Scary Berry": {
             imagen: "IMG/scarryberry.webp",
@@ -78,6 +81,7 @@ const productos = {
             imagen: "IMG/watermelon.webp",
             titulo: "ELFBAR TRIO 40K PUFFS - Watermelon Ice",
             descripcion: "Sandía dulce y jugosa acompañada por un refrescante efecto ice. Ligera, fresca y perfecta para todo el día."
+etiqueta: "❌️SIN STOCK❌️"
         },
         "Sour Strawberry Dragon Fruit": {
             imagen: "IMG/sourstraw.webp",
@@ -96,7 +100,7 @@ const productos = {
             imagen: "IMG/bajasplash.webp",
             titulo: "ELFBAR ICE KING - Baja Splash",
             descripcion: "Una explosión de sabores cítricos y tropicales con una frescura única. Refrescante, intensa y perfecta para cualquier momento.",
-            etiqueta: "🔥 Últimas unidades"
+            etiqueta: "❌️SIN STOCK❌️"
         }
     },
     summer: {
@@ -110,6 +114,7 @@ const productos = {
             imagen: "IMG/blackmint.webp",
             titulo: "ELFBAR SUMMER EDITION - Black Mint",
             descripcion: "Una explosión de menta intensa con frescura duradera. Ideal para quienes buscan una experiencia limpia y ultra refrescante."
+etiqueta: "❌️SIN STOCK❌️"
         }
     },
     lostmary: {
