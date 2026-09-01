@@ -29,13 +29,13 @@ const productos = {
         "Pineapple Kiwi Dragon Fruit": {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Pineapple Kiwi Dragon Fruit",
-            descripcion: "Ananá, kiwi y fruta del dragón en una mezcla tropical con notas dulces, ácidas y un final helado."
+            descripcion: "Ananá, kiwi y fruta del dragón en una mezcla tropical con notas dulces, ácidas y un final helado.",
 etiqueta: "❌️SIN STOCK❌️"
         },
         "Watermelon": {
             imagen: "IMG/ignite.webp",
             titulo: "IGNITE ICE 40K PUFFS - Watermelon",
-            descripcion: "Sandía madura con un efecto ice suave. Un clásico refrescante y muy equilibrado."
+            descripcion: "Sandía madura con un efecto ice suave. Un clásico refrescante y muy equilibrado.",
 etiqueta: "❌️SIN STOCK❌️"
         }
     },
@@ -69,7 +69,7 @@ etiqueta: "❌️SIN STOCK❌️"
         "Raspberry Watermelon": {
             imagen: "IMG/raspberrywatermelon.webp",
             titulo: "ELFBAR TRIO 40K PUFFS - Raspberry Watermelon",
-            descripcion: "La dulzura de la sandía se mezcla con la intensidad de la frambuesa. Frutal, jugosa y deliciosa."
+            descripcion: "La dulzura de la sandía se mezcla con la intensidad de la frambuesa. Frutal, jugosa y deliciosa.",
 etiqueta: "❌️SIN STOCK❌️"
         },
         "Scary Berry": {
@@ -80,7 +80,7 @@ etiqueta: "❌️SIN STOCK❌️"
         "Watermelon Ice": {
             imagen: "IMG/watermelon.webp",
             titulo: "ELFBAR TRIO 40K PUFFS - Watermelon Ice",
-            descripcion: "Sandía dulce y jugosa acompañada por un refrescante efecto ice. Ligera, fresca y perfecta para todo el día."
+            descripcion: "Sandía dulce y jugosa acompañada por un refrescante efecto ice. Ligera, fresca y perfecta para todo el día.",
 etiqueta: "❌️SIN STOCK❌️"
         },
         "Sour Strawberry Dragon Fruit": {
@@ -113,7 +113,7 @@ etiqueta: "❌️SIN STOCK❌️"
         "Black Mint": {
             imagen: "IMG/blackmint.webp",
             titulo: "ELFBAR SUMMER EDITION - Black Mint",
-            descripcion: "Una explosión de menta intensa con frescura duradera. Ideal para quienes buscan una experiencia limpia y ultra refrescante."
+            descripcion: "Una explosión de menta intensa con frescura duradera. Ideal para quienes buscan una experiencia limpia y ultra refrescante.",
 etiqueta: "❌️SIN STOCK❌️"
         }
     },
