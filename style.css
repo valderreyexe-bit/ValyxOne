@@ -17,8 +17,8 @@
     --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
     --shadow-glow: 0 0 20px rgba(0, 82, 255, 0.15);
-    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    --transition-smooth: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -128,7 +128,7 @@ li { list-style: none; }
 .section-title { font-family: var(--font-heading); font-size: clamp(2.2rem, 5vw, 3rem); letter-spacing: -1.2px; color: var(--text-dark); margin-bottom: 12px; line-height: 1.15; }
 .section-subtitle { color: var(--text-muted); font-size: 1.05rem; }
 .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1140px; margin: 0 auto; }
-.catalog-card { display: flex; flex-direction: column; background: #FFFFFF; border-radius: 28px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; position: relative; text-decoration: none; }
+.catalog-card { display: flex; flex-direction: column; background: #FFFFFF; border-radius: 28px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease; position: relative; text-decoration: none; will-change: transform, box-shadow; }
 .catalog-card:hover { transform: translateY(-8px); box-shadow: 0 24px 45px -10px rgba(0, 0, 0, 0.12); border-color: rgba(0, 82, 255, 0.2); }
 .card-visual { position: relative; padding: 55px 24px 35px 24px; display: flex; justify-content: center; align-items: center; min-height: 270px; overflow: hidden; background: linear-gradient(180deg, #1A1C20 0%, #0E1013 100%); }
 .card-glow { position: absolute; width: 170px; height: 170px; border-radius: 50%; filter: blur(55px); opacity: 0.55; transition: transform 0.5s ease, opacity 0.5s ease; z-index: 1; }
