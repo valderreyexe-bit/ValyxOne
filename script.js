@@ -12,7 +12,8 @@ const productos = {
         "MANGO ICE + PEACH WATERMELON ICE": {
             imagen: "IMG/ignite-peachmangowatermelon.webp",
             titulo: "IGNITE V-MIX 40K - Mango Ice + Peach Watermelon Ice",
-            descripcion: "Doble tanque: Mango helado intenso por un lado y la frescura dulce de durazno y sandía por el otro. Vapealos solos o combinalos."
+            descripcion: "Doble tanque: Mango helado intenso por un lado y la frescura dulce de durazno y sandía por el otro. Vapealos solos o combinalos.",
+sinStock: true
         },
         "MANGO ICE + PASSION FRUIT GUAVA": {
             imagen: "IMG/ignite-mangopassionfruitguava.webp",
