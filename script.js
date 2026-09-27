@@ -13,7 +13,7 @@ const productos = {
             imagen: "IMG/ignite-peachmangowatermelon.webp",
             titulo: "IGNITE V-MIX 40K - Mango Ice + Peach Watermelon Ice",
             descripcion: "Doble tanque: Mango helado intenso por un lado y la frescura dulce de durazno y sandía por el otro. Vapealos solos o combinalos.",
-sinStock: true
+            sinStock: true
         },
         "MANGO ICE + PASSION FRUIT GUAVA": {
             imagen: "IMG/ignite-mangopassionfruitguava.webp",
@@ -30,7 +30,7 @@ sinStock: true
             imagen: "IMG/ignite-watermelongrape.webp",
             titulo: "IGNITE V-MIX 40K - Watermelon Ice + Grape Ice",
             descripcion: "Doble tanque: Los dos favoritos de siempre. Sandía helada de un lado y uva escarchada del otro en un solo vaper.",
-sinStock: true
+            sinStock: true
         },
         "STRAWBERRY KIWI ICE + GRAPE KIWI ICE": {
             imagen: "IMG/ignite-strawberrykiwigrape.webp",
@@ -133,12 +133,15 @@ sinStock: true
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. MODAL VERIFICACIÓN EDAD
+    // 1. MODAL VERIFICACIÓN EDAD (BLINDADO)
     const popup = document.getElementById("age-verification");
     const btnSi = document.getElementById("btn-si");
     const btnNo = document.getElementById("btn-no");
     if (popup) {
-        if (localStorage.getItem("mayorEdad") === "si") {
+        let esMayor = false;
+        try { esMayor = (localStorage.getItem("mayorEdad") === "si"); } catch (e) {}
+
+        if (esMayor) {
             popup.remove();
             document.body.classList.remove("popup-active");
         } else {
@@ -147,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             history.replaceState(null, null, ' '); 
             if (btnSi) {
                 btnSi.addEventListener("click", () => {
-                    localStorage.setItem("mayorEdad", "si");
+                    try { localStorage.setItem("mayorEdad", "si"); } catch (e) {}
                     popup.style.display = "none";
                     document.body.classList.remove("popup-active");
                 });
@@ -160,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 2. NUEVO BANNER CARRUSEL (NUEVOS INGRESOS / LOST MARY)
+    // 2. NUEVO BANNER CARRUSEL
     const track = document.querySelector('.carousel-track');
     const dots = document.querySelectorAll('.carousel-dots .dot');
     
@@ -209,8 +212,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 3. LÓGICA DEL CARRITO Y PROMOCIONES
-    let carrito = JSON.parse(localStorage.getItem('santaVapeCart')) || []; 
+    // 3. LÓGICA DEL CARRITO Y PROMOCIONES (BLINDADO)
+    let carrito = [];
+    try { 
+        carrito = JSON.parse(localStorage.getItem('santaVapeCart')) || []; 
+    } catch (e) {}
+
     const cartToggleBtn = document.querySelector('.cart-toggle-btn');
     const cartSidebar = document.querySelector('.cart-sidebar');
     const cartOverlay = document.querySelector('.cart-overlay');
@@ -222,7 +229,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const promoNotice = document.getElementById('promo-notice');
 
     function guardarCarritoEnMemoria() {
-        localStorage.setItem('santaVapeCart', JSON.stringify(carrito));
+        try { 
+            localStorage.setItem('santaVapeCart', JSON.stringify(carrito)); 
+        } catch (e) {}
     }
 
     function toggleCart() {
@@ -429,7 +438,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// 4. SELECTOR DE SABORES (PDP)
+// 4. SELECTOR DE SABORES (PDP) CON LÓGICA DE STOCK
     document.querySelectorAll(".product").forEach(card => {
         const tipoProducto = card.dataset.product;
         const customDropdown = card.querySelector(".custom-dropdown");
@@ -649,7 +658,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 7. CARRUSEL DE MÉTRICAS DE CONFIANZA (RECUPERADO)
+    // 7. CARRUSEL DE MÉTRICAS DE CONFIANZA
     const trustContainer = document.querySelector('.trust-metrics-container');
     if (trustContainer) {
         let autoSlide;
