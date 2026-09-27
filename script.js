@@ -30,7 +30,7 @@ sinStock: true
             imagen: "IMG/ignite-watermelongrape.webp",
             titulo: "IGNITE V-MIX 40K - Watermelon Ice + Grape Ice",
             descripcion: "Doble tanque: Los dos favoritos de siempre. Sandía helada de un lado y uva escarchada del otro en un solo vaper.",
-sinStock: truea
+sinStock: true
         },
         "STRAWBERRY KIWI ICE + GRAPE KIWI ICE": {
             imagen: "IMG/ignite-strawberrykiwigrape.webp",
