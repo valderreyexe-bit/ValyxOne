@@ -46,7 +46,7 @@ const productos = {
             sinStock: true
         },
     },
-    iceking: {
+        iceking: {
         "Blueberry Ice": {
             imagen: "IMG/iceking-blueberryice.webp",
             titulo: "ELFBAR ICE KING 40K - Blueberry Ice",
@@ -56,59 +56,70 @@ const productos = {
         "Grape Ice": {
             imagen: "IMG/iceking-grape.webp",
             titulo: "ELFBAR ICE KING 40K - Grape Ice",
-            descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo característica de la línea Ice King."
+            descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo característica de la línea Ice King.",
+            etiqueta: "Última unidad"
         },
         "Strawberry Ice": {
             imagen: "IMG/iceking-strawberry.webp",
             titulo: "ELFBAR ICE KING 40K - Strawberry Ice",
-            descripcion: "Frutillas maduras y dulces acompañadas por una fresca e intensa sensación helada."
+            descripcion: "Frutillas maduras y dulces acompañadas por una fresca e intensa sensación helada.",
+            etiqueta: "Última unidad"
         },
         "Peach Mango Watermelon": {
             imagen: "IMG/iceking-peachmangowater.webp",
             titulo: "ELFBAR ICE KING 40K - Peach Mango Watermelon",
-            descripcion: "Mezcla tropical de durazno, mango y sandía con un final helado irresistible."
+            descripcion: "Mezcla tropical de durazno, mango y sandía con un final helado irresistible.",
+            etiqueta: "Última unidad"
         },
         "Green Apple Ice": {
             imagen: "IMG/iceking-greenapple.webp",
             titulo: "ELFBAR ICE KING 40K - Green Apple Ice",
-            descripcion: "Manzana verde jugosa con notas ligeramente ácidas y un efecto frígido desbordante."
+            descripcion: "Manzana verde jugosa con notas ligeramente ácidas y un efecto frígido desbordante.",
+            etiqueta: "Última unidad"
         },
         "Cranberry Pineapple Juice": {
             imagen: "IMG/iceking-cranberrypineapple.webp",
             titulo: "ELFBAR ICE KING 40K - Cranberry Pineapple Juice",
-            descripcion: "Jugo de arándano agridulce y piña tropical en una combinación vibrante y súper helada."
+            descripcion: "Jugo de arándano agridulce y piña tropical en una combinación vibrante y súper helada.",
+            etiqueta: "Última unidad"
         },
         "Miami Mint": {
             imagen: "IMG/iceking-miamimint.webp",
             titulo: "ELFBAR ICE KING 40K - Miami Mint",
-            descripcion: "Menta limpia, fresca y suave con un nivel de frescura óptimo y duradero."
+            descripcion: "Menta limpia, fresca y suave con un nivel de frescura óptimo y duradero.",
+            etiqueta: "Última unidad"
         },
         "Watermelon Ice": {
             imagen: "IMG/iceking-watermelonice.webp",
             titulo: "ELFBAR ICE KING 40K - Watermelon Ice",
-            descripcion: "El clásico e infaltable sabor a sandía dulce con el golpe extra helado de Elfbar."
+            descripcion: "El clásico e infaltable sabor a sandía dulce con el golpe extra helado de Elfbar.",
+            etiqueta: "Última unidad"
         }
     },
-    te30k: {
+        te30k: {
         "Cherry strazz": {
             imagen: "IMG/te-cherrystrazz.webp",
             titulo: "ELFBAR TE 30K - Cherry strazz",
-            descripcion: "Cerezas dulces combinadas con frutillas ácidas y un golpe fresco perfectamente balanceado."
+            descripcion: "Cerezas dulces combinadas con frutillas ácidas y un golpe fresco perfectamente balanceado.",
+            etiqueta: "Quedan 2"
         },
         "Peach mango Watermelon": {
             imagen: "IMG/te-peachmangowatermelon.webp",
             titulo: "ELFBAR TE 30K - Peach mango Watermelon",
-            descripcion: "El blend tropical perfecto entre durazno aterciopelado, mango dulce y sandía jugosa."
+            descripcion: "El blend tropical perfecto entre durazno aterciopelado, mango dulce y sandía jugosa.",
+            etiqueta: "Última unidad"
         },
         "Pineapple mango": {
             imagen: "IMG/te-pineapplemango.webp",
             titulo: "ELFBAR TE 30K - Pineapple mango",
-            descripcion: "Fusión exótica de piña tropical y mango maduro con gran intensidad en cada calada."
+            descripcion: "Fusión exótica de piña tropical y mango maduro con gran intensidad en cada calada.",
+            etiqueta: "Última unidad"
         },
         "Strawberry Ice": {
             imagen: "IMG/te-strawberryice.webp",
             titulo: "ELFBAR TE 30K - Strawberry Ice",
-            descripcion: "Frutillas rojas dulces con un final frío refrescante que resalta todo su sabor."
+            descripcion: "Frutillas rojas dulces con un final frío refrescante que resalta todo su sabor.",
+            etiqueta: "Quedan 2"
         },
         "Bubbalo Grape": {
             imagen: "IMG/te-chicleuva.webp",
@@ -125,7 +136,8 @@ const productos = {
         "Green Apple Ice": {
             imagen: "IMG/te-greenappleice.webp",
             titulo: "ELFBAR TE 30K - Green Apple Ice",
-            descripcion: "Manzana verde crujiente con notas ácidas y una frescura helada envolvente."
+            descripcion: "Manzana verde crujiente con notas ácidas y una frescura helada envolvente.",
+            etiqueta: "Última unidad"
         },
         "Miami mint": {
             imagen: "IMG/te-miamimint.webp",
