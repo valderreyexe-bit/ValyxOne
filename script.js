@@ -18,7 +18,8 @@ const productos = {
         "MANGO ICE + PASSION FRUIT GUAVA": {
             imagen: "IMG/ignite-mangopassionfruitguava.webp",
             titulo: "IGNITE V-MIX 40K - Mango Ice + Passion Fruit Guava",
-            descripcion: "Doble tanque: Clásico mango maduro helado junto a un blend ultra exótico de maracuyá."
+            descripcion: "Doble tanque: Clásico mango maduro helado junto a un blend ultra exótico de maracuyá.",
+            sinStock: true
         },
         "STRAWBERRY GRAPE ICE + KIWI WATERMELON ICE": {
             imagen: "IMG/ignite-strawberrygrapekiwiwater.webp",
@@ -35,12 +36,14 @@ const productos = {
         "STRAWBERRY KIWI ICE + GRAPE KIWI ICE": {
             imagen: "IMG/ignite-strawberrykiwigrape.webp",
             titulo: "IGNITE V-MIX 40K - Strawberry Kiwi Ice + Grape Kiwi Ice",
-            descripcion: "Doble tanque: El contraste perfecto entre frutilla-kiwi helado y el toque agridulce y vibrante de uva-kiwi ice."
+            descripcion: "Doble tanque: El contraste perfecto entre frutilla-kiwi helado y el toque agridulce y vibrante de uva-kiwi ice.",
+            sinStock: true
         },
         "PINNEAPPLE ICE + PASSION FRUIT SOUR KIWI": {
             imagen: "IMG/ignite-passionfruitguavakiwipinneapple.webp",
             titulo: "IGNITE V-MIX 40K - Pinneapple Ice + Passion Fruit Sour Kiwi",
-            descripcion: "Doble tanque: Ananá tropical refrescante emparejado con una explosión ácida y aromática de maracuyá y kiwi."
+            descripcion: "Doble tanque: Ananá tropical refrescante emparejado con una explosión ácida y aromática de maracuyá y kiwi.",
+            sinStock: true
         },
     },
     iceking: {
@@ -127,7 +130,8 @@ const productos = {
         "Miami mint": {
             imagen: "IMG/te-miamimint.webp",
             titulo: "ELFBAR TE 30K - Miami mint",
-            descripcion: "Menta refrescante de perfil cítrico y limpio, ideal para un vapeo fresco y constante."
+            descripcion: "Menta refrescante de perfil cítrico y limpio, ideal para un vapeo fresco y constante.",
+            sinStock: true
         }
     }
 };
