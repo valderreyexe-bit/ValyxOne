@@ -57,7 +57,7 @@ const productos = {
             imagen: "IMG/iceking-grape.webp",
             titulo: "ELFBAR ICE KING 40K - Grape Ice",
             descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo característica de la línea Ice King.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Strawberry Ice": {
             imagen: "IMG/iceking-strawberry.webp",
@@ -69,13 +69,13 @@ const productos = {
             imagen: "IMG/iceking-peachmangowater.webp",
             titulo: "ELFBAR ICE KING 40K - Peach Mango Watermelon",
             descripcion: "Mezcla tropical de durazno, mango y sandía con un final helado irresistible.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Green Apple Ice": {
             imagen: "IMG/iceking-greenapple.webp",
             titulo: "ELFBAR ICE KING 40K - Green Apple Ice",
             descripcion: "Manzana verde jugosa con notas ligeramente ácidas y un efecto frígido desbordante.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Cranberry Pineapple Juice": {
             imagen: "IMG/iceking-cranberrypineapple.webp",
