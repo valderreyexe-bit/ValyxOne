@@ -63,7 +63,7 @@ const productos = {
             imagen: "IMG/iceking-strawberry.webp",
             titulo: "ELFBAR ICE KING 40K - Strawberry Ice",
             descripcion: "Frutillas maduras y dulces acompañadas por una fresca e intensa sensación helada.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Peach Mango Watermelon": {
             imagen: "IMG/iceking-peachmangowater.webp",
@@ -81,19 +81,19 @@ const productos = {
             imagen: "IMG/iceking-cranberrypineapple.webp",
             titulo: "ELFBAR ICE KING 40K - Cranberry Pineapple Juice",
             descripcion: "Jugo de arándano agridulce y piña tropical en una combinación vibrante y súper helada.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Miami Mint": {
             imagen: "IMG/iceking-miamimint.webp",
             titulo: "ELFBAR ICE KING 40K - Miami Mint",
             descripcion: "Menta limpia, fresca y suave con un nivel de frescura óptimo y duradero.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Watermelon Ice": {
             imagen: "IMG/iceking-watermelonice.webp",
             titulo: "ELFBAR ICE KING 40K - Watermelon Ice",
             descripcion: "El clásico e infaltable sabor a sandía dulce con el golpe extra helado de Elfbar.",
-            etiqueta: "Última unidad"
+            sinStock: true
         }
     },
         te30k: {
@@ -101,7 +101,7 @@ const productos = {
             imagen: "IMG/te-cherrystrazz.webp",
             titulo: "ELFBAR TE 30K - Cherry strazz",
             descripcion: "Cerezas dulces combinadas con frutillas ácidas y un golpe fresco perfectamente balanceado.",
-            etiqueta: "Quedan 2"
+            sinStock: true
         },
         "Peach mango Watermelon": {
             imagen: "IMG/te-peachmangowatermelon.webp",
@@ -113,7 +113,7 @@ const productos = {
             imagen: "IMG/te-pineapplemango.webp",
             titulo: "ELFBAR TE 30K - Pineapple mango",
             descripcion: "Fusión exótica de piña tropical y mango maduro con gran intensidad en cada calada.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Strawberry Ice": {
             imagen: "IMG/te-strawberryice.webp",
