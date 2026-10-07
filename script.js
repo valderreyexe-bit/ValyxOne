@@ -107,7 +107,7 @@ const productos = {
             imagen: "IMG/te-peachmangowatermelon.webp",
             titulo: "ELFBAR TE 30K - Peach mango Watermelon",
             descripcion: "El blend tropical perfecto entre durazno aterciopelado, mango dulce y sandía jugosa.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Pineapple mango": {
             imagen: "IMG/te-pineapplemango.webp",
