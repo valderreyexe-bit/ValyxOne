@@ -119,7 +119,7 @@ const productos = {
             imagen: "IMG/te-strawberryice.webp",
             titulo: "ELFBAR TE 30K - Strawberry Ice",
             descripcion: "Frutillas rojas dulces con un final frío refrescante que resalta todo su sabor.",
-            etiqueta: "Quedan 2"
+            sinStock: true
         },
         "Bubbalo Grape": {
             imagen: "IMG/te-chicleuva.webp",
@@ -137,7 +137,7 @@ const productos = {
             imagen: "IMG/te-greenappleice.webp",
             titulo: "ELFBAR TE 30K - Green Apple Ice",
             descripcion: "Manzana verde crujiente con notas ácidas y una frescura helada envolvente.",
-            etiqueta: "Última unidad"
+            sinStock: true
         },
         "Miami mint": {
             imagen: "IMG/te-miamimint.webp",
