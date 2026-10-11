@@ -4,7 +4,7 @@
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#090A0C",
-  "theme_color": "#0052FF",
+  "theme_color": "#090A0C",
   "icons": [
     {
       "src": "IMG/perfil3.webp",
