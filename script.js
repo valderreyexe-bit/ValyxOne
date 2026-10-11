@@ -151,6 +151,9 @@ const imagenDe = (linea, sabor) => productos[linea]?.sabores[sabor]?.imagen || p
 const tamanio = (src, suf) => /^IMG\/(ignite|iceking|lostmary)\/|^IMG\/te-/.test(src) ? src.replace(/\.webp$/, suf + ".webp") : src;
 const imgMedia = src => tamanio(src, "-m");
 const imgMini = src => tamanio(src, "-t");
+// Estadísticas (Google Analytics). Si no cargó (por ejemplo, un bloqueador), no pasa nada.
+const medir = (evento, datos = {}) => { try { if (typeof gtag === "function") gtag("event", evento, datos); } catch (e) {} };
+const itemGA = (linea, sabor, cantidad = 1) => ({ item_id: linea, item_name: productos[linea]?.nombre, item_variant: sabor, price: productos[linea]?.precio, quantity: cantidad });
 const stockDe = (linea, sabor) => productos[linea]?.sabores[sabor]?.stock ?? 0;
 const verbo = MODO_REPOSICION ? "Reservar" : "Agregar al Carrito";
 
@@ -598,6 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (item) item.cantidad = nueva;
         carrito = carrito.filter(i => i.cantidad > 0);
         if (cambio > 0 && navigator.vibrate) navigator.vibrate(30);
+        medir(cambio > 0 ? "add_to_cart" : "remove_from_cart", { currency: "ARS", value: Math.abs(cambio) * productos[linea].precio, items: [itemGA(linea, sabor, Math.abs(cambio))] });
         renderizarCarrito();
         return true;
     }
@@ -966,6 +970,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function enviarPedido() {
         if (carrito.length === 0) return;
+        medir("generate_lead", { currency: "ARS", value: calcularTotales().totalFinal, localidad: datosCliente.localidad, pago: datosCliente.pago, items: carrito.map(i => itemGA(i.linea, i.sabor, i.cantidad)) });
         const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(armarMensaje())}`;
         carrito = [];
         abrirCarrito(false);
@@ -976,6 +981,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (whatsappCheckoutBtn) {
         whatsappCheckoutBtn.addEventListener('click', () => {
             if (carrito.length === 0) return;
+            medir("begin_checkout", { currency: "ARS", value: calcularTotales().totalFinal, items: carrito.map(i => itemGA(i.linea, i.sabor, i.cantidad)) });
             if (!datosCompletos()) { abrirDatos(true); return; }
             enviarPedido();
         });
@@ -992,6 +998,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const linea = card.dataset.product;
         const datos = productos[linea];
         if (!datos) return;
+        medir("view_item", { currency: "ARS", value: datos.precio, items: [{ item_id: linea, item_name: datos.nombre, price: datos.precio }] });
         const customDropdown = card.querySelector(".custom-dropdown");
         const buyBtn = card.querySelector(".product-buy-btn");
         const stockInfo = card.querySelector(".stock-info");
@@ -1287,3 +1294,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Red de seguridad: si algo no se disparó, se muestra igual
     setTimeout(() => piezas.forEach(e => { if (e.getBoundingClientRect().top < innerHeight) e.classList.add('fx-ve'); }), 1500);
 });
+
+// Clics en cualquier botón o link de WhatsApp que no sea el envío del pedido (consultas, "Avisame", flotante)
+document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="api.whatsapp.com"]');
+    if (!a) return;
+    const donde = a.classList.contains("whatsapp-float") ? "boton_flotante"
+        : a.closest(".svf") ? "pie" : a.closest(".pdp") ? "producto" : a.closest(".sv-faq, #faq") ? "preguntas" : "otro";
+    medir("contacto_whatsapp", { ubicacion: donde, pagina: location.pathname });
+}, true);
