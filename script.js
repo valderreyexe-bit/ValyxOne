@@ -36,7 +36,7 @@ const DESCUENTO_POR_PAR = 1600;
 const productos = {
     ignite: {
         nombre: "Ignite V400 Dual",
-        pagina: "ignite-vmix-40k.html",
+        pagina: "ignite-dual-40k.html",
         tarjeta: { clase: "card-ignite", color: "#FF6B00", marca: "Ignite", modelo: "V400 Dual 40K", spec: "V400 · 40K", icono: "fa-fire", desc: "40.000 puffs y sabores frutales bien intensos." },
         precio: 34800,
         promoPar: 68000, // (se calcula solo: 2 x precio - DESCUENTO_POR_PAR)
