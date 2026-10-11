@@ -1,40 +1,38 @@
-const CACHE_NAME = 'santavape-live-v1';
+const CACHE_NAME = 'santavape-live-v5';
 
-// Fuerza la instalación inmediata del nuevo sistema
-self.addEventListener('install', (event) => {
-    self.skipWaiting();
-});
+self.addEventListener('install', () => self.skipWaiting());
 
-// Borra cualquier memoria caché vieja que haya quedado en los celulares
+// Borra cachés viejas
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cache) => {
-                    if (cache !== CACHE_NAME) {
-                        return caches.delete(cache);
-                    }
-                })
-            );
-        })
+        caches.keys()
+            .then(names => Promise.all(names.filter(n => n !== CACHE_NAME).map(n => caches.delete(n))))
+            .then(() => self.clients.claim())
     );
-    return self.clients.claim();
 });
 
-// Estrategia "Network First" (Busca el stock nuevo primero)
+// Network First: siempre busca la versión nueva (stock actualizado).
+// Solo guarda en caché pedidos GET del propio sitio que salieron bien.
 self.addEventListener('fetch', (event) => {
+    const req = event.request;
+    if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+
     event.respondWith(
-        fetch(event.request)
-            .then((networkResponse) => {
-                // Si hay internet, actualiza la memoria con el stock real
-                return caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(event.request, networkResponse.clone());
-                    return networkResponse;
-                });
+        fetch(req)
+            .then(res => {
+                if (res.ok) {
+                    const copia = res.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(req, copia));
+                }
+                return res;
             })
-            .catch(() => {
-                // Si el cliente no tiene señal, muestra la última versión guardada
-                return caches.match(event.request);
-            })
+            .catch(() =>
+                caches.match(req).then(cacheada =>
+                    cacheada || new Response('Sin conexión. Revisá tu internet y volvé a intentar.', {
+                        status: 503,
+                        headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+                    })
+                )
+            )
     );
 });
