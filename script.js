@@ -49,7 +49,7 @@ const productos = {
             "Green Apple":                 { imagen: "IMG/ignite/green-apple-ice.webp", stock: 2, descripcion: "Manzana verde crocante con notas ácidas." },
             "Peach Berry Ice":             { imagen: "IMG/ignite/peach-berry-ice.webp", stock: 1, descripcion: "Durazno maduro y frutos rojos con un final helado." },
             "Strawberry Apple Watermelon": { imagen: "IMG/ignite/strawberry-apple-watermelon.webp", stock: 2, descripcion: "Frutilla, manzana y sandía en un blend frutal y jugoso." },
-            "Strawberry Banana":           { imagen: "IMG/ignite/strawberry-banana.webp", stock: 2, descripcion: "El clásico licuado de frutilla y banana, cremoso y dulce." },
+            "Strawberry Banana":           { imagen: "IMG/ignite/strawberry-banana.webp", stock: 1, descripcion: "El clásico licuado de frutilla y banana, cremoso y dulce." },
             "Strawberry Watermelon":       { imagen: "IMG/ignite/strawberry-watermelon.webp", stock: 2, descripcion: "Frutilla dulce con sandía fresca de verano." },
             "Watermelon Ice":              { imagen: "IMG/ignite/watermelon-ice.webp", stock: 2, descripcion: "Sandía dulce con un golpe helado bien marcado." }
         }
