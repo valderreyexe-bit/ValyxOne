@@ -14,7 +14,7 @@ if ('serviceWorker' in navigator) {
                               dicen "Reservar" y el pedido sale como reserva.
    MODO_REPOSICION = false -> venta normal (cambialo cuando llegue el stock).
    ===================================================================== */
-const MODO_REPOSICION = true;
+const MODO_REPOSICION = false;
 const FECHA_REPOSICION = "lunes 12 / martes 13 de octubre";
 const FECHA_CORTA = "12/13 oct"; // versión corta para el aviso de arriba
 const WHATSAPP_NUMERO = "5492216205269";
@@ -212,6 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 : `<i class="fa-solid fa-clock"></i> Mercadería en camino: llega el <strong>${FECHA_REPOSICION}</strong>. Reservá tu sabor <strong>sin seña</strong> y te avisamos por WhatsApp.`;
             el.hidden = false;
         });
+    } else {
+        const heroStatus = document.getElementById("hero-stock-status");
+        if (heroStatus) heroStatus.innerHTML = `<span class="pulse-dot"></span> Llegó stock · Entregas en el día`;
     }
 
     // 2b. CATÁLOGO AUTOMÁTICO (páginas de localidades): se arma solo con los
