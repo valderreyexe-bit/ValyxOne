@@ -125,6 +125,12 @@ const LOCALIDADES_NOMBRE = {
     "mar-de-ajo": "Mar de Ajó", "nueva-atlantis": "Nueva Atlantis"
 };
 const ENTREGAS = [
+    { img: "entrega-29.webp", loc: "san-clemente" },
+    { img: "entrega-30.webp", loc: "las-toninas" },
+    { img: "entrega-31.webp", loc: "mar-de-ajo" },
+    { img: "entrega-32.webp", loc: "san-bernardo" },
+    { img: "entrega-33.webp", loc: "costa-del-este" },
+    { img: "entrega-34.webp", loc: "las-toninas" },
     { img: "entrega-01.webp", loc: "las-toninas" },    { img: "entrega-02.webp", loc: "santa-teresita" },
     { img: "entrega-03.webp", loc: "san-bernardo" },   { img: "entrega-07.webp", loc: "mar-de-ajo" },
     { img: "entrega-13.webp", loc: "costa-del-este" }, { img: "entrega-18.webp", loc: "la-lucila" },
