@@ -1258,3 +1258,4 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .como-pedir li { flex-direction: row; align-items: center; gap: 6px; font-size: 0.74rem; }
 .cp-num { width: 20px; height: 20px; flex-shrink: 0; font-size: 0.68rem; }
 .como-pedir-nota { margin-top: 8px; padding-top: 8px; font-size: 0.74rem; }
+.sv-flujo { grid-template-columns: repeat(3, minmax(0, 112px)); }
