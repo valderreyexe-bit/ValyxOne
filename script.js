@@ -161,7 +161,7 @@ const imgMini = src => tamanio(src, "-t");
 const medir = (evento, datos = {}) => { try { if (typeof gtag === "function") gtag("event", evento, datos); } catch (e) {} };
 const itemGA = (linea, sabor, cantidad = 1) => ({ item_id: linea, item_name: productos[linea]?.nombre, item_variant: sabor, price: productos[linea]?.precio, quantity: cantidad });
 const stockDe = (linea, sabor) => productos[linea]?.sabores[sabor]?.stock ?? 0;
-const verbo = MODO_REPOSICION ? "Reservar" : "Agregar al Carrito";
+const verbo = MODO_REPOSICION ? "Reservar" : "Agregar al pedido";
 
 // Si una imagen no existe, mostramos el logo en vez de un ícono roto
 document.addEventListener("error", e => {
@@ -517,6 +517,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "ArrowLeft") mostrarHistoria(historiaIdx - 1);
     });
 
+    // Prueba de entregas reales en el hero del inicio
+    document.querySelectorAll("[data-hero-prueba]").forEach(a => {
+        const n = a.querySelector("[data-entregas-cuenta]");
+        if (n) n.textContent = ENTREGAS.length;
+        const caras = a.querySelector(".sv-hero-caras");
+        if (caras) caras.innerHTML = ENTREGAS.slice(0, 3).map(h =>
+            `<img src="IMG/entregas/${h.img.replace(".webp", "-t.webp")}" alt="" width="34" height="34">`).join("");
+    });
+
     document.querySelectorAll("[data-entregas]").forEach(cont => {
         const filtro = cont.dataset.entregas; // "" = todas, o la clave de una localidad
         let lista = filtro ? ENTREGAS.filter(e => e.loc === filtro) : ENTREGAS.slice();
@@ -657,31 +666,28 @@ document.addEventListener("DOMContentLoaded", () => {
         cartBar.classList.add('bump');
     }
 
-    // ---- Datos de entrega: se cargan UNA vez y quedan guardados en el celular ----
+    // ---- Entrega: solo preguntamos la LOCALIDAD (un toque). Nombre y dirección van por WhatsApp ----
     const LOCALIDADES = ["San Clemente del Tuyú", "Las Toninas", "Santa Teresita", "Mar del Tuyú",
         "Costa del Este", "Aguas Verdes", "La Lucila del Mar", "Costa Azul", "San Bernardo del Tuyú",
         "Mar de Ajó", "Nueva Atlantis"];
-    const PAGOS = [
-        { valor: "Efectivo", icono: "fa-money-bill-wave", detalle: "Al recibir" },
-        { valor: "Transferencia", icono: "fa-building-columns", detalle: "Al recibir" }
-    ];
+    const OTRA_LOCALIDAD = "Otra localidad";
     const TEXTO_SIN_SENA = MODO_REPOSICION
         ? "Reservás sin seña: pagás recién cuando te lo entregamos. Se confirma por orden de llegada."
-        : "Pagás cuando te lo entregamos.";
+        : "No pagás nada en la página: pagás cuando te lo entregamos.";
 
-    let datosCliente = { nombre: "", localidad: "", direccion: "", pago: "" };
+    // Puede traer nombre y dirección de la versión anterior: si están, los sumamos al mensaje
+    let datosCliente = { nombre: "", localidad: "", direccion: "" };
     try { datosCliente = Object.assign(datosCliente, JSON.parse(localStorage.getItem('santaVapeDatos')) || {}); } catch (e) {}
-    if (!LOCALIDADES.includes(datosCliente.localidad)) datosCliente.localidad = "";
-    if (!PAGOS.some(p => p.valor === datosCliente.pago)) datosCliente.pago = "";
-    const datosCompletos = () => !!(datosCliente.nombre && datosCliente.localidad && datosCliente.pago);
+    if (!LOCALIDADES.includes(datosCliente.localidad) && datosCliente.localidad !== OTRA_LOCALIDAD) datosCliente.localidad = "";
+    const datosCompletos = () => !!datosCliente.localidad;
     const guardarDatosCliente = () => { try { localStorage.setItem('santaVapeDatos', JSON.stringify(datosCliente)); } catch (e) {} };
 
-    // ---- Pie del carrito: total, a dónde va, aviso sin seña ----
+    // ---- Pie del carrito: total, a dónde va, cómo sigue ----
     let cartTotalRow = null, cartEntrega = null, cartSena = null;
     if (cartFooter) {
         cartSena = document.createElement('div');
         cartSena.className = 'cart-sena';
-        cartSena.innerHTML = `<i class="fa-solid fa-shield-heart"></i> ${TEXTO_SIN_SENA}`;
+        cartSena.innerHTML = `<i class="fa-brands fa-whatsapp"></i> <span>Se abre WhatsApp con tu ${palabraPedido} armado. ${TEXTO_SIN_SENA}</span>`;
         cartFooter.prepend(cartSena);
 
         cartEntrega = document.createElement('div');
@@ -697,12 +703,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cartEntrega) return;
         cartEntrega.hidden = carrito.length === 0 || !datosCompletos();
         if (cartEntrega.hidden) return;
-        const linea2 = [datosCliente.direccion, datosCliente.pago].filter(Boolean).join(' · ');
         cartEntrega.innerHTML = `
             <i class="fa-solid fa-location-dot"></i>
             <div class="cart-entrega-texto">
-                <strong>${escaparHTML(datosCliente.nombre)} · ${datosCliente.localidad}</strong>
-                <span>${escaparHTML(linea2)}</span>
+                <strong>Entrega en ${escaparHTML(datosCliente.localidad)}</strong>
+                <span>Envío gratis · coordinamos el horario por WhatsApp</span>
             </div>
             <button type="button" class="cart-entrega-cambiar">Cambiar</button>`;
         cartEntrega.querySelector('button').addEventListener('click', () => abrirDatos(false));
@@ -712,121 +717,31 @@ document.addEventListener("DOMContentLoaded", () => {
         return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
 
-    // ---- Ventana "¿A quién y dónde se lo llevamos?" ----
+    // ---- Ventana "¿En qué localidad estás?": un toque y sale el pedido ----
     const modal = document.createElement('div');
     modal.className = 'datos-modal';
     modal.hidden = true;
     modal.innerHTML = `
-        <div class="datos-card" role="dialog" aria-modal="true" aria-labelledby="datos-titulo">
+        <div class="datos-card loc-card" role="dialog" aria-modal="true" aria-labelledby="datos-titulo">
             <div class="datos-head">
-                <h3 id="datos-titulo">¿A quién se lo llevamos?</h3>
+                <h3 id="datos-titulo">¿En qué localidad estás?</h3>
                 <button type="button" class="datos-cerrar" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <p class="datos-intro"><i class="fa-solid fa-bolt"></i> Lo cargás <strong>una sola vez</strong>: la próxima vez pedís directo.</p>
-
-            <label class="campo" for="dm-nombre">
-                <span>Tu nombre</span>
-                <input type="text" id="dm-nombre" autocomplete="given-name" maxlength="40" placeholder="Ej: Juli" enterkeyhint="next">
-                <small class="campo-error">Poné tu nombre así sabemos quién es.</small>
-            </label>
-
-            <div class="campo" id="dm-localidad-campo">
-                <span id="dm-loc-label">Localidad</span>
-                <button type="button" class="loc-select" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="dm-loc-label dm-loc-valor">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <span id="dm-loc-valor" class="loc-valor">Elegí tu localidad</span>
-                    <i class="fa-solid fa-chevron-down loc-flecha"></i>
-                </button>
-                <ul class="loc-lista" role="listbox" aria-labelledby="dm-loc-label" hidden>
-                    ${LOCALIDADES.map(l => `<li role="option" tabindex="-1" data-valor="${l}">${l}</li>`).join('')}
-                </ul>
-                <small class="campo-error">Elegí tu localidad.</small>
+            <p class="datos-intro">Tocá la tuya y se abre WhatsApp con el ${palabraPedido} listo. <strong>Nombre y dirección nos los pasás por ahí.</strong></p>
+            <div class="loc-chips">
+                ${LOCALIDADES.map(l => `<button type="button" class="loc-chip" data-valor="${l}">${l.replace(/^(San Clemente|San Bernardo) del Tuyú$/, "$1")}</button>`).join('')}
+                <button type="button" class="loc-chip loc-chip-otra" data-valor="${OTRA_LOCALIDAD}">Otra</button>
             </div>
-
-            <label class="campo" for="dm-direccion">
-                <span>Calle, número y referencia <em>(opcional)</em></span>
-                <input type="text" id="dm-direccion" autocomplete="street-address" maxlength="90" placeholder="Ej: Calle 39 N° 450, rejas verdes" enterkeyhint="done">
-            </label>
-
-            <fieldset class="campo" id="dm-pago-campo">
-                <legend>¿Cómo vas a pagar?</legend>
-                <div class="pago-opciones">
-                    ${PAGOS.map(p => `
-                        <label class="pago-op">
-                            <input type="radio" name="dm-pago" value="${p.valor}">
-                            <span><i class="fa-solid ${p.icono}"></i><b>${p.valor}</b></span>
-                        </label>`).join('')}
-                </div>
-                <small class="campo-error">Elegí efectivo o transferencia.</small>
-            </fieldset>
-
             <p class="datos-sena"><i class="fa-solid fa-shield-heart"></i> ${TEXTO_SIN_SENA}</p>
-
-            <button type="button" class="btn-primary btn-whatsapp datos-enviar">
-                <i class="fa-brands fa-whatsapp"></i> <span></span>
-            </button>
         </div>`;
     document.body.appendChild(modal);
-
-    const dmNombre = modal.querySelector('#dm-nombre');
-    const dmDireccion = modal.querySelector('#dm-direccion');
-    const locBtn = modal.querySelector('.loc-select');
-    const locValor = modal.querySelector('.loc-valor');
-    const locLista = modal.querySelector('.loc-lista');
-    const dmEnviar = modal.querySelector('.datos-enviar');
     let enviarAlGuardar = true;
-
-    function abrirLista(abrir) {
-        locLista.hidden = !abrir;
-        locBtn.setAttribute('aria-expanded', String(abrir));
-        locBtn.classList.toggle('abierto', abrir);
-        if (abrir) {
-            const actual = locLista.querySelector('[aria-selected="true"]') || locLista.firstElementChild;
-            actual.scrollIntoView({ block: 'nearest' });
-        }
-    }
-    function elegirLocalidad(valor) {
-        datosCliente.localidad = valor;
-        locValor.textContent = valor || 'Elegí tu localidad';
-        locBtn.classList.toggle('vacio', !valor);
-        locLista.querySelectorAll('li').forEach(li => li.setAttribute('aria-selected', String(li.dataset.valor === valor)));
-        modal.querySelector('#dm-localidad-campo').classList.remove('error');
-    }
-    locBtn.addEventListener('click', () => abrirLista(locLista.hidden));
-    locBtn.addEventListener('keydown', e => {
-        if (e.key === 'ArrowDown') { e.preventDefault(); abrirLista(true); (locLista.querySelector('[aria-selected="true"]') || locLista.firstElementChild).focus(); }
-    });
-    locLista.querySelectorAll('li').forEach(li => {
-        const tomar = () => { elegirLocalidad(li.dataset.valor); abrirLista(false); locBtn.focus(); };
-        li.addEventListener('click', tomar);
-        li.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tomar(); }
-            if (e.key === 'ArrowDown') { e.preventDefault(); li.nextElementSibling?.focus(); }
-            if (e.key === 'ArrowUp') { e.preventDefault(); (li.previousElementSibling || locBtn).focus(); }
-            if (e.key === 'Escape') { abrirLista(false); locBtn.focus(); }
-        });
-    });
-
-    dmNombre.addEventListener('input', () => dmNombre.closest('.campo').classList.remove('error'));
-    dmNombre.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); dmNombre.blur(); abrirLista(true); } });
-    dmDireccion.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); dmDireccion.blur(); } });
-    modal.querySelectorAll('input[name="dm-pago"]').forEach(r => r.addEventListener('change', () => {
-        modal.querySelector('#dm-pago-campo').classList.remove('error');
-    }));
 
     function abrirDatos(enviarDespues) {
         enviarAlGuardar = enviarDespues;
-        dmNombre.value = datosCliente.nombre;
-        dmDireccion.value = datosCliente.direccion;
-        elegirLocalidad(datosCliente.localidad);
-        modal.querySelectorAll('input[name="dm-pago"]').forEach(r => { r.checked = r.value === datosCliente.pago; });
-        modal.querySelectorAll('.campo.error').forEach(c => c.classList.remove('error'));
-        abrirLista(false);
-        dmEnviar.querySelector('span').textContent = enviarDespues ? `Enviar ${palabraPedido} por WhatsApp` : 'Guardar datos';
-        dmEnviar.querySelector('i').style.display = enviarDespues ? '' : 'none';
+        modal.querySelectorAll('.loc-chip').forEach(c => c.classList.toggle('activo', c.dataset.valor === datosCliente.localidad));
         modal.hidden = false;
         document.body.classList.add('datos-open');
-        modal.querySelector('.datos-card').scrollTop = 0;
     }
     function cerrarDatos() {
         modal.hidden = true;
@@ -835,23 +750,13 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.querySelector('.datos-cerrar').addEventListener('click', cerrarDatos);
     modal.addEventListener('click', e => { if (e.target === modal) cerrarDatos(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) cerrarDatos(); });
-
-    dmEnviar.addEventListener('click', () => {
-        const nombre = dmNombre.value.trim();
-        const pago = modal.querySelector('input[name="dm-pago"]:checked')?.value || "";
-        let primerError = null;
-        const marcar = (cond, campo) => { campo.classList.toggle('error', cond); if (cond && !primerError) primerError = campo; };
-        marcar(!nombre, dmNombre.closest('.campo'));
-        marcar(!datosCliente.localidad, modal.querySelector('#dm-localidad-campo'));
-        marcar(!pago, modal.querySelector('#dm-pago-campo'));
-        if (primerError) { primerError.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-
-        datosCliente = { nombre, localidad: datosCliente.localidad, direccion: dmDireccion.value.trim(), pago };
+    modal.querySelectorAll('.loc-chip').forEach(c => c.addEventListener('click', () => {
+        datosCliente.localidad = c.dataset.valor;
         guardarDatosCliente();
         cerrarDatos();
         pintarEntrega();
         if (enviarAlGuardar) enviarPedido();
-    });
+    }));
 
     function renderizarCarrito() {
         guardarCarritoEnMemoria();
@@ -883,12 +788,10 @@ document.addEventListener("DOMContentLoaded", () => {
             whatsappCheckoutBtn.style.opacity = vacio ? '0.5' : '1';
             whatsappCheckoutBtn.style.pointerEvents = vacio ? 'none' : 'auto';
             whatsappCheckoutBtn.classList.add('btn-whatsapp');
-            whatsappCheckoutBtn.innerHTML = datosCompletos()
-                ? `<i class="fa-brands fa-whatsapp" style="font-size: 1.25rem; margin-right: 8px;"></i> Enviar ${palabraPedido} por WhatsApp`
-                : `Continuar <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>`;
+            whatsappCheckoutBtn.innerHTML = `<i class="fa-brands fa-whatsapp" style="font-size: 1.25rem; margin-right: 8px;"></i> Enviar ${palabraPedido} por WhatsApp`;
         }
         if (continueShoppingBtn) {
-            continueShoppingBtn.innerHTML = '<i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Seguir comprando';
+            continueShoppingBtn.innerHTML = '<i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Seguir eligiendo';
         }
 
         if (!cartItemsContainer) return;
@@ -970,16 +873,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const { pares, ahorro } = calcularTotales();
         if (pares > 0) m += `🔥 Promo ${pares} ${pares === 1 ? "par" : "pares"}: -${formatoPesos(ahorro)}\n`;
-        m += `\n💰 *Total: ${formatoPesos(totalFinal)}*\n`;
-        m += `💳 Pago: ${datosCliente.pago} al recibir${MODO_REPOSICION ? ' (sin seña)' : ''}\n\n`;
-        m += `👤 ${datosCliente.nombre}\n`;
-        m += `📍 ${datosCliente.localidad}${datosCliente.direccion ? ` – ${datosCliente.direccion}` : ''}`;
+        m += `\n💰 *Total: ${formatoPesos(totalFinal)}* (envío gratis)\n`;
+        m += `💳 Pago al recibir: efectivo o transferencia${MODO_REPOSICION ? ' (sin seña)' : ''}\n\n`;
+        m += `📍 ${datosCliente.localidad === OTRA_LOCALIDAD ? 'Localidad: te la paso por acá' : datosCliente.localidad}\n`;
+        if (datosCliente.nombre) m += `👤 ${datosCliente.nombre}\n`;
+        m += datosCliente.direccion ? `🏠 ${datosCliente.direccion}` : `🏠 Mi dirección es: `;
         return m;
     }
 
     function enviarPedido() {
         if (carrito.length === 0) return;
-        medir("generate_lead", { currency: "ARS", value: calcularTotales().totalFinal, localidad: datosCliente.localidad, pago: datosCliente.pago, items: carrito.map(i => itemGA(i.linea, i.sabor, i.cantidad)) });
+        medir("generate_lead", { currency: "ARS", value: calcularTotales().totalFinal, localidad: datosCliente.localidad, items: carrito.map(i => itemGA(i.linea, i.sabor, i.cantidad)) });
         const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMERO}&text=${encodeURIComponent(armarMensaje())}`;
         carrito = [];
         abrirCarrito(false);
@@ -996,7 +900,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. FICHA DE PRODUCTO: DESPLEGABLE DE SABORES + CANTIDAD CON − / +
+    // "Cómo es el pedido": muchos creían que había que pagar en la página
+    function crearComoPedir() {
+        const el = document.createElement('div');
+        el.className = 'como-pedir';
+        el.innerHTML = `
+            <p class="como-pedir-titulo">¿Cómo es el ${palabraPedido}?</p>
+            <ol>
+                <li><span class="cp-num">1</span><span>Elegís tus sabores acá</span></li>
+                <li><span class="cp-num cp-wa">2</span><span>Se abre WhatsApp con el ${palabraPedido} armado</span></li>
+                <li><span class="cp-num">3</span><span>Pagás cuando te lo entregamos</span></li>
+            </ol>
+            <p class="como-pedir-nota">No se paga nada en la página · Efectivo o transferencia</p>`;
+        return el;
+    }
+
+    // 4. FICHA DE PRODUCTO: GRILLA DE SABORES + CANTIDAD CON − / + + BARRA FIJA DE COMPRA
     function etiquetaStock(stock) {
         if (stock <= 0) return { texto: "Sin stock", clase: "st-out" };
         if (stock === 1) return { texto: "Última unidad", clase: "st-low" };
@@ -1099,6 +1018,36 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             const headQty = customDropdown?.querySelector('.selected-qty');
             if (headQty) { headQty.hidden = qty === 0; headQty.textContent = `×${qty}`; }
+
+            grid?.querySelectorAll('.sabor-chip').forEach(ch => {
+                const activo = ch.dataset.sabor === elegido;
+                ch.classList.toggle('activo', activo);
+                ch.setAttribute('aria-checked', String(activo));
+                const q = enCarritoDe(linea, ch.dataset.sabor);
+                const b = ch.querySelector('.sabor-chip-qty');
+                b.hidden = q === 0; b.textContent = q;
+            });
+            pintarBarra();
+        }
+
+        // ---- Barra fija abajo (celular): siempre a la vista el sabor elegido y el botón ----
+        function pintarBarra() {
+            if (!barra) return;
+            const stock = stockDe(linea, elegido);
+            const qty = enCarritoDe(linea, elegido);
+            const total = unidadesTotales();
+            barra.querySelector('.pb-img').src = imgMini(imagenDe(linea, elegido));
+            barra.querySelector('.pb-sabor').textContent = elegido;
+            barra.querySelector('.pb-sub').textContent = stock <= 0 ? 'Sin stock por ahora'
+                : qty > 0 ? `En tu ${palabraPedido}: ${qty}` : `${formatoPesos(datos.precio)} · ${etiquetaStock(stock).texto}`;
+            const btn = barra.querySelector('.pb-btn');
+            btn.className = 'pb-btn' + (stock <= 0 ? ' pb-avisame' : qty > 0 ? ' pb-ver' : '');
+            btn.innerHTML = stock <= 0 ? '<i class="fa-regular fa-bell"></i> Avisame'
+                : qty > 0 ? `Ver ${palabraPedido} (${total}) <i class="fa-solid fa-arrow-right"></i>`
+                : `<i class="fa-solid fa-plus"></i> ${MODO_REPOSICION ? 'Reservar' : 'Agregar'}`;
+            const ver = barra.querySelector('.pb-carrito');
+            ver.hidden = total === 0 || qty > 0;
+            ver.querySelector('span').textContent = total;
         }
 
         function elegir(sabor) {
@@ -1180,6 +1129,85 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const liInicial = lista.firstElementChild;
             if (liInicial) { liInicial.classList.add("active"); liInicial.setAttribute("aria-selected", "true"); }
+        }
+
+        // Grilla de sabores a la vista (reemplaza al desplegable en la ficha)
+        let grid = null, barra = null;
+        const datosBox = card.querySelector('.pdp-datos');
+        if (customDropdown && datosBox) {
+            const wrap = customDropdown.closest('.flavor-selector-wrapper');
+            wrap.classList.add('con-grilla');
+            const lbl = wrap.querySelector('label');
+            if (lbl) lbl.textContent = 'Elegí tu sabor';
+            grid = document.createElement('div');
+            grid.className = 'sabor-grid';
+            grid.setAttribute('role', 'radiogroup');
+            grid.setAttribute('aria-label', 'Sabores');
+            nombres.forEach(sabor => {
+                const st = datos.sabores[sabor].stock;
+                const e = etiquetaStock(st);
+                const ch = document.createElement('button');
+                ch.type = 'button';
+                ch.className = 'sabor-chip' + (st <= 0 ? ' agotado' : '');
+                ch.dataset.sabor = sabor;
+                ch.setAttribute('role', 'radio');
+                ch.innerHTML = `
+                    <img src="${imgMini(imagenDe(linea, sabor))}" alt="" width="40" height="40" loading="lazy">
+                    <span class="sabor-chip-txt">
+                        <span class="sabor-chip-nombre">${sabor}</span>
+                        <span class="sabor-chip-stock ${e.clase}">${st <= 0 ? 'Agotado' : e.texto}</span>
+                    </span>
+                    <span class="sabor-chip-qty" hidden></span>`;
+                ch.addEventListener('click', () => {
+                    customDropdown.querySelector(`li[data-sabor="${CSS.escape(sabor)}"]`)?.click();
+                    if (elegido !== sabor) elegir(sabor);
+                });
+                grid.appendChild(ch);
+            });
+            customDropdown.after(grid);
+            if (stockInfo) stockInfo.hidden = true; // el stock ya se ve en cada sabor
+
+            // Orden: sabores → botón → cómo es el pedido → perfil del sabor
+            const comoPedir = crearComoPedir();
+            (qtyRow || buyBtn)?.after(comoPedir);
+            const descBox = card.querySelector('.pdp-description-box');
+            if (descBox) comoPedir.after(descBox);
+
+            if (buyBtn) {
+                barra = document.createElement('div');
+                barra.className = 'pdp-barra';
+                barra.hidden = true;
+                barra.innerHTML = `
+                    <img class="pb-img" src="" alt="" width="44" height="44">
+                    <div class="pb-txt"><span class="pb-sabor"></span><span class="pb-sub"></span></div>
+                    <button type="button" class="pb-carrito" aria-label="Ver ${palabraPedido}" hidden><i class="fa-solid fa-bag-shopping"></i><span></span></button>
+                    <button type="button" class="pb-btn"></button>`;
+                document.body.appendChild(barra);
+                barra.querySelector('.pb-carrito').addEventListener('click', () => abrirCarrito(true));
+                barra.querySelector('.pb-btn').addEventListener('click', () => {
+                    const stock = stockDe(linea, elegido);
+                    if (stock <= 0) { window.open(buyBtn.href, '_blank', 'noopener'); return; }
+                    if (enCarritoDe(linea, elegido) > 0) { abrirCarrito(true); return; }
+                    if (sumar(linea, elegido, 1)) { barra.classList.remove('bump'); void barra.offsetWidth; barra.classList.add('bump'); }
+                });
+                // Se oculta mientras el botón normal está a la vista (no duplicar)
+                let botonVisible = false;
+                const mostrar = () => {
+                    const on = !botonVisible;
+                    barra.hidden = !on;
+                    document.body.classList.toggle('has-pdp-barra', on);
+                };
+                if ('IntersectionObserver' in window) {
+                    const vistos = new Map();
+                    const io = new IntersectionObserver(ents => {
+                        ents.forEach(en => vistos.set(en.target, en.isIntersecting));
+                        botonVisible = [...vistos.values()].some(Boolean);
+                        mostrar();
+                    }, { rootMargin: '0px 0px -90px 0px' });
+                    io.observe(buyBtn);
+                    if (qtyRow) io.observe(qtyRow);
+                } else mostrar();
+            }
         }
 
         alCambiarCarrito.push(refrescar);

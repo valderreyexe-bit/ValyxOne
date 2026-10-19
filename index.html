@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="style.css?v=8" as="style">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vapers en La Costa | Elfbar, Ignite y Lost Mary | Santa Vape</title>
@@ -31,7 +31,7 @@
     <meta name="twitter:description" content="Vapers descartables originales con entrega gratis en el día en La Costa.">
     <meta name="twitter:image" content="https://www.santavape.store/IMG/og/santavape.jpg">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=8">
     <!-- Google Analytics -->
     <script src="/errores.js?v=1"></script>
     <script src="/clarity.js?v=1" async></script>
@@ -120,7 +120,7 @@
                 </div>
             </nav>
             <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 16px;">
-                <button class="cart-toggle-btn" aria-label="Abrir carrito">
+                <button class="cart-toggle-btn" aria-label="Ver tu pedido">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-badge">0</span>
                 </button>
@@ -146,6 +146,16 @@
                 <div class="sv-hero-btns">
                     <a href="#productos" class="sv-btn sv-btn-primario">Ver sabores</a>
                 </div>
+                <ol class="sv-flujo" aria-label="Cómo es el pedido">
+                    <li><span>1</span>Elegís acá</li>
+                    <li><span class="wa">2</span>Pedís por WhatsApp</li>
+                    <li><span>3</span>Pagás al recibir</li>
+                </ol>
+                <a href="#entregas" class="sv-hero-prueba" data-hero-prueba>
+                    <span class="sv-hero-caras" aria-hidden="true"></span>
+                    <span><strong data-entregas-cuenta>33</strong> entregas reales con foto</span>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </a>
             </div>
             <div class="sv-hero-img">
                 <picture>
@@ -168,7 +178,7 @@
         </section>
 
         <!-- ENTREGAS REALES -->
-        <section class="sv-section ios-section" data-entregas-seccion>
+        <section id="entregas" class="sv-section ios-section" data-entregas-seccion>
             <h2 class="sv-h2">Gracias por la confianza. <span class="gris">Cada foto es alguien de La Costa que nos eligió.</span></h2>
             <div class="historias" data-entregas=""></div>
         </section>
@@ -178,7 +188,7 @@
             <h2 class="sv-h2">Así de simple. <span>Sin seña y sin vueltas.</span></h2>
             <ol class="sv-pasos">
                 <li><span class="sv-num">1</span><strong>Elegí tus sabores</strong><p>Combiná los que quieras y aprovechá las promos de 2 unidades.</p></li>
-                <li><span class="sv-num">2</span><strong>Mandá el pedido por WhatsApp</strong><p>El mensaje se arma solo desde el carrito, con todo lo que elegiste.</p></li>
+                <li><span class="sv-num">2</span><strong>Mandá el pedido por WhatsApp</strong><p>Se abre WhatsApp con tu pedido ya escrito. Solo nos pasás tu dirección. <strong>No se paga nada en la página.</strong></p></li>
                 <li><span class="sv-num">3</span><strong>Recibí y pagá ahí</strong><p>Te lo llevamos en mano. Pagás en efectivo o por transferencia al recibir.</p></li>
             </ol>
             <ul class="sv-garantias">
@@ -212,7 +222,7 @@
             <div class="sv-faq">
                 <details>
                     <summary>¿Cómo hago el pedido?<span class="sv-mas" aria-hidden="true"></span></summary>
-                    <p>Elegís tus sabores, los agregás al carrito y nos mandás el pedido por WhatsApp: el mensaje se arma solo. <strong>No pedimos seña</strong>: pagás recién cuando te lo entregamos. Te respondemos al toque para coordinar el horario.</p>
+                    <p>Elegís tus sabores acá y tocás "Enviar pedido por WhatsApp": se abre el chat con el pedido ya escrito. En la página no se paga nada. <strong>No pedimos seña</strong>: pagás recién cuando te lo entregamos. Te respondemos al toque para coordinar el horario.</p>
                 </details>
                 <details>
                     <summary>¿Cómo pago?<span class="sv-mas" aria-hidden="true"></span></summary>
@@ -315,7 +325,7 @@
             <button class="cart-close-btn"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="cart-items-container">
-            <div class="cart-empty-msg">Tu carrito está vacío.</div>
+            <div class="cart-empty-msg">Todavía no elegiste sabores.</div>
         </div>
 <div id="promo-notice" style="display: none; background: rgba(37, 211, 102, 0.1); color: #128C7E; padding: 10px; text-align: center; font-weight: 700; font-size: 0.85rem; border-radius: 8px; margin: 10px 20px;"></div>        <div class="cart-footer" style="display: flex; flex-direction: column; gap: 12px;">
             <button id="whatsapp-checkout-btn" class="btn-primary" style="width: 100%; opacity: 0.5; pointer-events: none;">
@@ -331,6 +341,6 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
     
-    <script src="script.js?v=6"></script>
+    <script src="script.js?v=7"></script>
 </body>
 </html>

@@ -1132,3 +1132,96 @@ body.home-sv.en-portada .whatsapp-float { opacity: 0 !important; transform: scal
 .sv-legal-fecha { margin-top: 28px; font-size: 0.85rem; }
 .sv-404 { min-height: 70vh; }
 .svf-base a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* =====================================================================
+   UX v8: SABORES A LA VISTA · BARRA DE COMPRA · CÓMO ES EL PEDIDO · LOCALIDAD
+   ===================================================================== */
+
+/* ---- Grilla de sabores (ficha) ---- */
+.flavor-selector-wrapper.con-grilla .custom-dropdown { display: none; }
+.flavor-selector-wrapper.con-grilla { margin-bottom: 18px; }
+.sabor-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.sabor-chip { position: relative; display: flex; align-items: center; gap: 10px; min-height: 60px; padding: 8px 10px 8px 8px; border-radius: 16px; border: 1.5px solid rgba(0, 0, 0, 0.08); background: #FFFFFF; color: var(--text-dark); font-family: var(--font-body); text-align: left; cursor: pointer; transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease; touch-action: manipulation; }
+.sabor-chip:active { transform: scale(0.97); }
+.sabor-chip img { width: 40px; height: 40px; flex-shrink: 0; object-fit: contain; border-radius: 10px; background: var(--bg-alt); }
+.sabor-chip-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.sabor-chip-nombre { font-size: 0.86rem; font-weight: 700; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sabor-chip-stock { font-size: 0.72rem; font-weight: 700; color: #0E7A5F; }
+.sabor-chip-stock.st-low { color: #D9480F; }
+.sabor-chip-stock.st-out { color: var(--text-muted); }
+.sabor-chip.activo { border-color: var(--primary-blue); box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.12); }
+.sabor-chip.agotado { background: var(--bg-alt); }
+.sabor-chip.agotado img { filter: grayscale(1); opacity: 0.55; }
+.sabor-chip.agotado .sabor-chip-nombre { color: var(--text-muted); }
+.sabor-chip-qty { position: absolute; top: -7px; right: -5px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; background: var(--primary-blue); color: #FFFFFF; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #FFFFFF; }
+.sabor-chip-qty[hidden] { display: none; }
+.sabor-chip:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
+@media (min-width: 992px) { .sabor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* ---- "¿Cómo es el pedido?" ---- */
+.como-pedir { margin: 16px 0 4px; padding: 14px 14px 12px; border-radius: 18px; background: var(--bg-alt); }
+.como-pedir-titulo { margin: 0 0 10px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+.como-pedir ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.como-pedir li { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; font-size: 0.8rem; font-weight: 600; line-height: 1.3; color: var(--text-dark); }
+.cp-num { width: 24px; height: 24px; border-radius: 50%; background: var(--text-dark); color: #FFFFFF; font-size: 0.75rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+.cp-num.cp-wa { background: #25D366; }
+.como-pedir-nota { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid rgba(0, 0, 0, 0.06); font-size: 0.78rem; font-weight: 700; color: #0E7A5F; }
+
+/* ---- Barra fija de compra (ficha, celular) ---- */
+.pdp-barra { position: fixed; left: 50%; bottom: max(12px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: calc(100% - 24px); max-width: 480px; z-index: 996; display: flex; align-items: center; gap: 10px; padding: 8px 8px 8px 8px; border-radius: 22px; background: rgba(255, 255, 255, 0.92); -webkit-backdrop-filter: saturate(180%) blur(16px); backdrop-filter: saturate(180%) blur(16px); border: 1px solid rgba(0, 0, 0, 0.06); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18); animation: pbEntra 0.28s cubic-bezier(0.16, 1, 0.3, 1); }
+.pdp-barra[hidden] { display: none; }
+.pdp-barra.bump { animation: bumpBarra 0.35s ease; }
+@keyframes pbEntra { from { opacity: 0; transform: translate(-50%, 16px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.pb-img { width: 44px; height: 44px; flex-shrink: 0; object-fit: contain; border-radius: 12px; background: var(--bg-alt); }
+.pb-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.2; }
+.pb-sabor { font-size: 0.9rem; font-weight: 800; color: var(--text-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-sub { font-size: 0.76rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-btn { flex-shrink: 0; height: 46px; padding: 0 18px; border: none; border-radius: 16px; background: var(--primary-blue); color: #FFFFFF; font-family: var(--font-body); font-size: 0.95rem; font-weight: 800; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 8px 18px -8px rgba(0, 82, 255, 0.8); touch-action: manipulation; }
+.pb-btn:active { transform: scale(0.96); }
+.pb-btn.pb-ver { background: var(--text-dark); box-shadow: none; }
+.pb-btn.pb-avisame { background: #FFFFFF; color: #0E7A5F; border: 2px solid rgba(37, 211, 102, 0.55); box-shadow: none; }
+.pb-carrito { position: relative; flex-shrink: 0; width: 46px; height: 46px; border-radius: 16px; border: 1px solid rgba(0, 0, 0, 0.08); background: #FFFFFF; color: var(--text-dark); font-size: 1.05rem; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.pb-carrito[hidden] { display: none; }
+.pb-carrito span { position: absolute; top: -6px; right: -6px; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--primary-blue); color: #FFFFFF; font-size: 0.7rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+body.has-pdp-barra .cart-bar { display: none; }
+body.has-pdp-barra { padding-bottom: 84px; }
+body.has-pdp-barra .whatsapp-float { display: none; }
+body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-barra, body.hoja-open .pdp-barra, body.datos-open .pdp-barra { display: none; }
+@media (min-width: 992px) {
+    .pdp-barra { display: none !important; }
+    body.has-pdp-barra { padding-bottom: 0; }
+    body.has-pdp-barra .cart-bar { display: block; }
+    body.has-pdp-barra .cart-bar[hidden] { display: none; }
+    body.has-pdp-barra .whatsapp-float { display: flex; }
+}
+@media (max-width: 359px) { .pb-btn { padding: 0 12px; font-size: 0.88rem; } .pb-img { display: none; } }
+
+/* ---- Localidad: un toque y sale el pedido ---- */
+.loc-card .datos-intro strong { color: var(--text-dark); }
+.loc-chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.loc-chip { min-height: 48px; padding: 10px 12px; border-radius: 14px; border: 1.5px solid rgba(0, 0, 0, 0.08); background: #FFFFFF; color: var(--text-dark); font-family: var(--font-body); font-size: 0.92rem; font-weight: 700; text-align: left; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; touch-action: manipulation; }
+.loc-chip:active { transform: scale(0.97); background: rgba(37, 211, 102, 0.08); border-color: #25D366; }
+.loc-chip.activo { border-color: #25D366; background: rgba(37, 211, 102, 0.08); }
+.loc-chip-otra { color: var(--text-muted); }
+.loc-chip:focus-visible { outline: 2px solid var(--primary-blue); outline-offset: 2px; }
+.cart-sena { align-items: flex-start; }
+.cart-sena i { color: #25D366; font-size: 1rem; margin-top: 1px; }
+
+/* ---- Inicio: cómo es el pedido + entregas reales en el hero ---- */
+.sv-flujo { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; font-size: 0.85rem; font-weight: 600; color: var(--sv-ink); }
+.sv-flujo li { display: inline-flex; align-items: center; gap: 6px; }
+.sv-flujo li + li::before { content: ""; width: 12px; height: 1.5px; margin: 0 4px 0 2px; background: rgba(0, 0, 0, 0.2); }
+.sv-flujo span { width: 20px; height: 20px; border-radius: 50%; background: var(--sv-ink); color: #FFFFFF; font-size: 0.68rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+.sv-flujo span.wa { background: #25D366; }
+.sv-hero-prueba { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 6px; border-radius: 50px; background: rgba(255, 255, 255, 0.75); border: 1px solid var(--sv-line); color: var(--sv-ink); font-size: 0.85rem; font-weight: 600; text-decoration: none; box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.25); }
+.sv-hero-prueba strong { font-weight: 800; }
+.sv-hero-prueba > i { font-size: 0.7rem; color: var(--sv-ink-2); }
+.sv-hero-caras { display: inline-flex; }
+.sv-hero-caras img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #FFFFFF; background: var(--bg-alt); }
+.sv-hero-caras img + img { margin-left: -10px; }
+.sv-hero-caras:empty { display: none; }
+.sabor-chip .sabor-chip-stock { background: none !important; padding: 0 !important; border-radius: 0; text-transform: none; letter-spacing: 0; }
+.sv-flujo { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); gap: 10px 18px; font-size: 0.82rem; line-height: 1.25; }
+.sv-flujo li { flex-direction: column; align-items: flex-start; gap: 5px; max-width: 110px; }
+.sv-flujo li + li::before { content: none; }
+.sv-flujo { align-items: start; }
