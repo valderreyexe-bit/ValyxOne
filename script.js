@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("age-verification");
     const btnSi = document.getElementById("btn-si");
     const btnNo = document.getElementById("btn-no");
-    if (popup) {
+    if (popup && !popup.dataset.listo) { // si el mini-script del HTML ya lo maneja, no hacemos nada
         let esMayor = false;
         try { esMayor = (localStorage.getItem("mayorEdad") === "si"); } catch (e) {}
 

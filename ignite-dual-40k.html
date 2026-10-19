@@ -69,6 +69,7 @@
             </div>
         </div>
     </div>
+    <script>/* Cartel de edad: funciona apenas carga la página, sin esperar a script.js */(function(){var g=document.getElementById("age-verification");if(!g)return;g.setAttribute("data-listo","1");var ok=false;try{ok=localStorage.getItem("mayorEdad")==="si"}catch(e){}if(ok){g.parentNode.removeChild(g);return}document.body.classList.add("popup-active");window.scrollTo(0,0);var s=document.getElementById("btn-si"),n=document.getElementById("btn-no");if(s)s.addEventListener("click",function(){try{localStorage.setItem("mayorEdad","si")}catch(e){}g.style.display="none";document.body.classList.remove("popup-active");try{gtag("event","edad_confirmada")}catch(e){}});if(n)n.addEventListener("click",function(){location.replace("https://www.google.com")})})();</script>
     <header class="header">
         <div class="header-container">
             <div style="flex: 1; display: flex; justify-content: flex-start;">
@@ -275,6 +276,6 @@
     <a href="https://wa.me/5492216205269?text=Hola!%20Quiero%20hacer%20una%20consulta" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacto por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
-    <script src="script.js?v=5"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>
