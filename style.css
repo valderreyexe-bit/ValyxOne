@@ -1225,3 +1225,8 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .sv-flujo li { flex-direction: column; align-items: flex-start; gap: 5px; max-width: 110px; }
 .sv-flujo li + li::before { content: none; }
 .sv-flujo { align-items: start; }
+.sabor-chip-es { font-size: 0.74rem; font-weight: 500; line-height: 1.25; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sabor-chip { align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
+.sabor-chip img { margin-top: 2px; }
+.sabor-chip .sabor-chip-stock { margin-top: 2px; }
+.pdp-description-box[hidden] { display: none !important; }

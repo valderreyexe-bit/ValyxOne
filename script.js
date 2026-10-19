@@ -900,6 +900,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Qué es cada sabor, en criollo (se ve debajo del nombre original de la caja)
+    const SABOR_ES = {
+        "Blue Razz B Pop": "Frambuesa azul y caramelo ácido",
+        "Blueberry Ice": "Arándanos helados",
+        "Grape Ice": "Uva helada",
+        "Green Apple": "Manzana verde ácida",
+        "Green Apple Ice": "Manzana verde helada",
+        "Peach Berry Ice": "Durazno y frutos rojos, helado",
+        "Strawberry Apple Watermelon": "Frutilla, manzana y sandía",
+        "Strawberry Banana": "Licuado de frutilla y banana",
+        "Strawberry Watermelon": "Frutilla y sandía",
+        "Watermelon Ice": "Sandía helada",
+        "Blue Razz Ice": "Frambuesa azul, frío extremo",
+        "Cherry Fuse": "Cereza dulce y fresca",
+        "Mango Magic": "Mango maduro, bien dulce",
+        "Peach": "Durazno suave",
+        "Peach Mango Watermelon": "Durazno, mango y sandía",
+        "Tigers Blood": "Frutilla, sandía y coco",
+        "Miami Mint": "Menta fresca",
+        "Pineapple Ice": "Ananá helado",
+        "Strawberry Kiwi": "Frutilla y kiwi",
+        "Cherry Strazz": "Cereza y frutilla ácida",
+        "Pineapple Mango": "Ananá y mango",
+        "Strawberry Ice": "Frutilla helada",
+        "Bubbaloo Grape": "Chicle de uva"
+    };
+    const saborEs = (linea, sabor) => SABOR_ES[sabor] || (productos[linea].sabores[sabor].descripcion || "").split(/[,.:]/)[0];
+
     // "Cómo es el pedido": muchos creían que había que pagar en la página
     function crearComoPedir() {
         const el = document.createElement('div');
@@ -1039,7 +1067,7 @@ document.addEventListener("DOMContentLoaded", () => {
             barra.querySelector('.pb-img').src = imgMini(imagenDe(linea, elegido));
             barra.querySelector('.pb-sabor').textContent = elegido;
             barra.querySelector('.pb-sub').textContent = stock <= 0 ? 'Sin stock por ahora'
-                : qty > 0 ? `En tu ${palabraPedido}: ${qty}` : `${formatoPesos(datos.precio)} · ${etiquetaStock(stock).texto}`;
+                : qty > 0 ? `En tu ${palabraPedido}: ${qty}` : `${saborEs(linea, elegido)} · ${formatoPesos(datos.precio)}`;
             const btn = barra.querySelector('.pb-btn');
             btn.className = 'pb-btn' + (stock <= 0 ? ' pb-avisame' : qty > 0 ? ' pb-ver' : '');
             btn.innerHTML = stock <= 0 ? '<i class="fa-regular fa-bell"></i> Avisame'
@@ -1155,6 +1183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <img src="${imgMini(imagenDe(linea, sabor))}" alt="" width="40" height="40" loading="lazy">
                     <span class="sabor-chip-txt">
                         <span class="sabor-chip-nombre">${sabor}</span>
+                        <span class="sabor-chip-es">${saborEs(linea, sabor)}</span>
                         <span class="sabor-chip-stock ${e.clase}">${st <= 0 ? 'Agotado' : e.texto}</span>
                     </span>
                     <span class="sabor-chip-qty" hidden></span>`;
@@ -1171,7 +1200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const comoPedir = crearComoPedir();
             (qtyRow || buyBtn)?.after(comoPedir);
             const descBox = card.querySelector('.pdp-description-box');
-            if (descBox) comoPedir.after(descBox);
+            if (descBox) descBox.hidden = true; // ya se ve en español en cada sabor
 
             if (buyBtn) {
                 barra = document.createElement('div');
