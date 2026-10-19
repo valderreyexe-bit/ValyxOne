@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return `
             <li class="hoja-fila${st <= 0 ? " agotado" : ""}">
                 <img src="${imgMini(imagenDe(hojaLinea, sabor))}" alt="" width="44" height="44" loading="lazy">
-                <span class="hoja-sabor"><strong>${sabor}</strong><span>${etiqueta}</span></span>
+                <span class="hoja-sabor"><strong>${sabor}</strong><span>${st > 0 ? saborEs(hojaLinea, sabor) + " · " : ""}${etiqueta}</span></span>
                 ${st > 0 ? `
                 <span class="stepper">
                     <button type="button" class="step-btn" data-s="${sabor}" data-d="-1" aria-label="Restar ${sabor}" ${q <= 0 ? "disabled" : ""}>−</button>
@@ -935,11 +935,11 @@ document.addEventListener("DOMContentLoaded", () => {
         el.innerHTML = `
             <p class="como-pedir-titulo">¿Cómo es el ${palabraPedido}?</p>
             <ol>
-                <li><span class="cp-num">1</span><span>Elegís tus sabores acá</span></li>
-                <li><span class="cp-num cp-wa">2</span><span>Se abre WhatsApp con el ${palabraPedido} armado</span></li>
-                <li><span class="cp-num">3</span><span>Pagás cuando te lo entregamos</span></li>
+                <li><span class="cp-num">1</span><span>Elegís acá</span></li>
+                <li><span class="cp-num cp-wa">2</span><span>Pedís por WhatsApp</span></li>
+                <li><span class="cp-num">3</span><span>Pagás al recibir</span></li>
             </ol>
-            <p class="como-pedir-nota">No se paga nada en la página · Efectivo o transferencia</p>`;
+            <p class="como-pedir-nota">No se paga nada en la página: efectivo o transferencia cuando te llega.</p>`;
         return el;
     }
 
@@ -1196,9 +1196,30 @@ document.addEventListener("DOMContentLoaded", () => {
             customDropdown.after(grid);
             if (stockInfo) stockInfo.hidden = true; // el stock ya se ve en cada sabor
 
-            // Orden: sabores → botón → cómo es el pedido → perfil del sabor
+            // Orden: sabores → botón → sumá otro modelo → cómo es el pedido
             const comoPedir = crearComoPedir();
             (qtyRow || buyBtn)?.after(comoPedir);
+            const otros = Object.entries(productos)
+                .map(([id, p]) => ({ id, p, ...resumenLinea(p) }))
+                .filter(x => x.id !== linea && x.stock > 0);
+            if (otros.length) {
+                const mini = document.createElement('div');
+                mini.className = 'mini-otros';
+                mini.innerHTML = `
+                    <p class="mini-otros-titulo">🔥 Llevando 2, <strong>de cualquier modelo</strong>, ahorrás ${formatoPesos(DESCUENTO_POR_PAR)}</p>
+                    <div class="mini-otros-lista">
+                        ${otros.map(({ id, p }) => {
+                            const t = p.tarjeta || {};
+                            return `<button type="button" class="mini-otro" data-linea="${id}" style="${estiloLinea(t)}">
+                                <img src="${imgMini(p.imagenGenerica || IMG_RESPALDO)}" alt="" width="40" height="40" loading="lazy">
+                                <span class="mini-otro-txt"><b>${t.modelo || p.nombre}</b><small>${formatoPesos(p.precio)}</small></span>
+                                <span class="mini-otro-mas" aria-hidden="true">+</span>
+                            </button>`;
+                        }).join('')}
+                    </div>`;
+                mini.querySelectorAll('.mini-otro').forEach(b => b.addEventListener('click', () => abrirSelector(b.dataset.linea)));
+                comoPedir.before(mini);
+            }
             const descBox = card.querySelector('.pdp-description-box');
             if (descBox) descBox.hidden = true; // ya se ve en español en cada sabor
 

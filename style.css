@@ -1230,3 +1230,31 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .sabor-chip img { margin-top: 2px; }
 .sabor-chip .sabor-chip-stock { margin-top: 2px; }
 .pdp-description-box[hidden] { display: none !important; }
+
+/* ---- v10: ficha más corta + sumá otro modelo ---- */
+.sabor-grid { gap: 6px; }
+.sabor-chip { min-height: 0; padding: 7px 8px 7px 7px; gap: 8px; border-radius: 14px; align-items: center; }
+.sabor-chip img { width: 34px; height: 34px; margin-top: 0; border-radius: 9px; }
+.sabor-chip-txt { gap: 1px; }
+.sabor-chip-nombre { font-size: 0.82rem; -webkit-line-clamp: 1; }
+.sabor-chip-es { font-size: 0.72rem; -webkit-line-clamp: 1; }
+.sabor-chip .sabor-chip-stock { font-size: 0.68rem; margin-top: 0; }
+
+.mini-otros { margin: 14px 0 0; padding: 12px; border-radius: 18px; background: linear-gradient(135deg, #FFF4EA, #FFFFFF); border: 1px solid rgba(255, 138, 61, 0.25); }
+.mini-otros-titulo { margin: 0 0 10px; font-size: 0.86rem; font-weight: 600; line-height: 1.3; color: #8A3B00; }
+.mini-otros-titulo strong { font-weight: 800; }
+.mini-otros-lista { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -12px; padding: 0 12px 2px; scroll-snap-type: x mandatory; }
+.mini-otros-lista::-webkit-scrollbar { display: none; }
+.mini-otro { flex: 0 0 auto; scroll-snap-align: start; display: flex; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 14px; border: 1px solid rgba(0, 0, 0, 0.07); background: #FFFFFF; font-family: var(--font-body); color: var(--text-dark); text-align: left; cursor: pointer; touch-action: manipulation; box-shadow: 0 4px 12px -8px rgba(0, 0, 0, 0.3); }
+.mini-otro:active { transform: scale(0.96); }
+.mini-otro img { width: 40px; height: 40px; object-fit: contain; border-radius: 10px; background: var(--c-tint, var(--bg-alt)); }
+.mini-otro-txt { display: flex; flex-direction: column; line-height: 1.2; }
+.mini-otro-txt b { font-size: 0.82rem; white-space: nowrap; }
+.mini-otro-txt small { font-size: 0.74rem; color: var(--text-muted); font-weight: 600; }
+.mini-otro-mas { width: 28px; height: 28px; border-radius: 50%; background: var(--c, var(--primary-blue)); color: #FFFFFF; font-weight: 800; font-size: 1.05rem; display: inline-flex; align-items: center; justify-content: center; margin-left: 2px; }
+
+.como-pedir { margin-top: 12px; padding: 10px 12px; }
+.como-pedir-titulo { display: none; }
+.como-pedir li { flex-direction: row; align-items: center; gap: 6px; font-size: 0.74rem; }
+.cp-num { width: 20px; height: 20px; flex-shrink: 0; font-size: 0.68rem; }
+.como-pedir-nota { margin-top: 8px; padding-top: 8px; font-size: 0.74rem; }
