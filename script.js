@@ -49,9 +49,9 @@ const productos = {
             "Green Apple":                 { imagen: "IMG/ignite/green-apple-ice.webp", stock: 2, descripcion: "Manzana verde crocante con notas ácidas." },
             "Peach Berry Ice":             { imagen: "IMG/ignite/peach-berry-ice.webp", stock: 0, descripcion: "Durazno maduro y frutos rojos con un final helado." },
             "Strawberry Apple Watermelon": { imagen: "IMG/ignite/strawberry-apple-watermelon.webp", stock: 2, descripcion: "Frutilla, manzana y sandía en un blend frutal y jugoso." },
-            "Strawberry Banana":           { imagen: "IMG/ignite/strawberry-banana.webp", stock: 1, descripcion: "El clásico licuado de frutilla y banana, cremoso y dulce." },
+            "Strawberry Banana":           { imagen: "IMG/ignite/strawberry-banana.webp", stock: 0, descripcion: "El clásico licuado de frutilla y banana, cremoso y dulce." },
             "Strawberry Watermelon":       { imagen: "IMG/ignite/strawberry-watermelon.webp", stock: 2, descripcion: "Frutilla dulce con sandía fresca de verano." },
-            "Watermelon Ice":              { imagen: "IMG/ignite/watermelon-ice.webp", stock: 2, descripcion: "Sandía dulce con un golpe helado bien marcado." }
+            "Watermelon Ice":              { imagen: "IMG/ignite/watermelon-ice.webp", stock: 1, descripcion: "Sandía dulce con un golpe helado bien marcado." }
         }
     },
     iceking: {
@@ -63,13 +63,13 @@ const productos = {
         emoji: "🧊",
         imagenGenerica: "IMG/iceking/blue-razz-ice.webp",
         sabores: {
-            "Blue Razz Ice":          { imagen: "IMG/iceking/blue-razz-ice.webp", stock: 2, descripcion: "Frambuesa azul ácida con el golpe de frío extremo de la línea Ice King." },
+            "Blue Razz Ice":          { imagen: "IMG/iceking/blue-razz-ice.webp", stock: 1, descripcion: "Frambuesa azul ácida con el golpe de frío extremo de la línea Ice King." },
             "Cherry Fuse":            { imagen: "IMG/iceking/cherry-fuse.webp", stock: 0, descripcion: "Cereza intensa y dulce con un final fresco." },
             "Grape Ice":              { imagen: "IMG/iceking/grape-ice.webp", stock: 1, descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo." },
-            "Mango Magic":            { imagen: "IMG/iceking/mango-magic.webp", stock: 1, descripcion: "Mango maduro y tropical, bien dulce y jugoso." },
-            "Peach":                  { imagen: "IMG/iceking/peach.webp", stock: 1, descripcion: "Durazno aterciopelado, suave y frutal." },
+            "Mango Magic":            { imagen: "IMG/iceking/mango-magic.webp", stock: 0, descripcion: "Mango maduro y tropical, bien dulce y jugoso." },
+            "Peach":                  { imagen: "IMG/iceking/peach.webp", stock: 0, descripcion: "Durazno aterciopelado, suave y frutal." },
             "Peach Mango Watermelon": { imagen: "IMG/iceking/peach-mango-watermelon.webp", stock: 0, descripcion: "Mezcla tropical de durazno, mango y sandía con final helado." },
-            "Tigers Blood":           { imagen: "IMG/iceking/tigers-blood.webp", stock: 1, descripcion: "Frutilla, sandía y un toque de coco: el clásico Tiger's Blood." },
+            "Tigers Blood":           { imagen: "IMG/iceking/tigers-blood.webp", stock: 0, descripcion: "Frutilla, sandía y un toque de coco: el clásico Tiger's Blood." },
             "Watermelon Ice":         { imagen: "IMG/iceking/watermelon-ice.webp", stock: 0, descripcion: "Sandía dulce con el golpe extra helado de Elfbar." },
             "Miami Mint":             { imagen: "IMG/iceking/miami-mint.webp", stock: 0, descripcion: "Menta limpia, fresca y suave con frescura duradera." }
         }
