@@ -84,7 +84,7 @@ const productos = {
         imagenGenerica: "IMG/lostmary/green-apple-ice.webp",
         sabores: {
             "Grape Ice":             { imagen: "IMG/lostmary/grape-ice.webp", stock: 0, descripcion: "Uva dulce con final helado." },
-            "Green Apple Ice":       { imagen: "IMG/lostmary/green-apple-ice.webp", stock: 1, descripcion: "Manzana verde ácida y bien fresca." },
+            "Green Apple Ice":       { imagen: "IMG/lostmary/green-apple-ice.webp", stock: 0, descripcion: "Manzana verde ácida y bien fresca." },
             "Pineapple Ice":         { imagen: "IMG/lostmary/pineapple-ice.webp", stock: 0, descripcion: "Ananá tropical con un toque helado." },
             "Strawberry Kiwi":       { imagen: "IMG/lostmary/strawberry-kiwi.webp", stock: 0, descripcion: "Frutilla dulce con el toque ácido del kiwi." },
             "Strawberry Watermelon": { imagen: "IMG/lostmary/strawberry-watermelon.webp", stock: 0, descripcion: "Frutilla y sandía, dulce y refrescante." }
