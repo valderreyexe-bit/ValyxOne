@@ -1390,3 +1390,24 @@ document.addEventListener("click", e => {
         : a.closest(".svf") ? "pie" : a.closest(".pdp") ? "producto" : a.closest(".sv-faq, #faq") ? "preguntas" : "otro";
     medir("contacto_whatsapp", { ubicacion: donde, pagina: location.pathname });
 }, true);
+
+/* Título de portada: la segunda línea va rotando */
+(function () {
+  var r = document.querySelector("[data-rota]");
+  if (!r) return;
+  var t = r.querySelector(".sv-rota-txt"), frases = r.dataset.rota.split("|"), i = 0;
+  if (!t || frases.length < 2) return;
+  var quieto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  setInterval(function () {
+    if (document.hidden) return;
+    i = (i + 1) % frases.length;
+    if (quieto) { t.textContent = frases[i]; return; }
+    t.classList.add("sale");
+    setTimeout(function () {
+      t.textContent = frases[i];
+      t.classList.remove("sale"); t.classList.add("entra");
+      void t.offsetWidth;
+      t.classList.remove("entra");
+    }, 450);
+  }, 2600);
+})();

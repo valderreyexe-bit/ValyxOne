@@ -1259,3 +1259,12 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .cp-num { width: 20px; height: 20px; flex-shrink: 0; font-size: 0.68rem; }
 .como-pedir-nota { margin-top: 8px; padding-top: 8px; font-size: 0.74rem; }
 .sv-flujo { grid-template-columns: repeat(3, minmax(0, 112px)); }
+
+/* v15: título con frase que rota */
+.sv-hero-title { max-width: none; }
+.sv-rota { display: block; height: 1.12em; overflow: hidden; white-space: nowrap; }
+.sv-rota-txt { display: inline-block; background: linear-gradient(90deg, #0A84FF, #8E44FF 55%, #FF2D87); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: 0.08em; transition: transform .45s cubic-bezier(.2,.7,.2,1), opacity .45s; }
+.sv-rota-txt.sale { transform: translateY(-70%); opacity: 0; }
+.sv-rota-txt.entra { transform: translateY(70%); opacity: 0; transition: none; }
+@media (max-width: 991px) { .sv-hero-title { font-size: clamp(1.9rem, 9.4vw, 3rem); } }
+@media (prefers-reduced-motion: reduce) { .sv-rota-txt { transition: none; } }
