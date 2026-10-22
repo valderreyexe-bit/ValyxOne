@@ -63,9 +63,9 @@ const productos = {
         emoji: "🧊",
         imagenGenerica: "IMG/iceking/blue-razz-ice.webp",
         sabores: {
-            "Blue Razz Ice":          { imagen: "IMG/iceking/blue-razz-ice.webp", stock: 1, descripcion: "Frambuesa azul ácida con el golpe de frío extremo de la línea Ice King." },
+            "Blue Razz Ice":          { imagen: "IMG/iceking/blue-razz-ice.webp", stock: 0, descripcion: "Frambuesa azul ácida con el golpe de frío extremo de la línea Ice King." },
             "Cherry Fuse":            { imagen: "IMG/iceking/cherry-fuse.webp", stock: 0, descripcion: "Cereza intensa y dulce con un final fresco." },
-            "Grape Ice":              { imagen: "IMG/iceking/grape-ice.webp", stock: 1, descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo." },
+            "Grape Ice":              { imagen: "IMG/iceking/grape-ice.webp", stock: 0, descripcion: "Uva dulce y sabrosa con una ráfaga de frío extremo." },
             "Mango Magic":            { imagen: "IMG/iceking/mango-magic.webp", stock: 0, descripcion: "Mango maduro y tropical, bien dulce y jugoso." },
             "Peach":                  { imagen: "IMG/iceking/peach.webp", stock: 0, descripcion: "Durazno aterciopelado, suave y frutal." },
             "Peach Mango Watermelon": { imagen: "IMG/iceking/peach-mango-watermelon.webp", stock: 0, descripcion: "Mezcla tropical de durazno, mango y sandía con final helado." },
