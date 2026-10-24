@@ -43,14 +43,14 @@ const productos = {
         emoji: "🔥",
         imagenGenerica: "IMG/ignite/peach-berry-ice.webp",
         sabores: {
-            "Blue Razz B Pop":             { imagen: "IMG/ignite/blue-razz-b-pop.webp", stock: 2, descripcion: "Frambuesa azul dulce con un toque de caramelo ácido tipo B-Pop." },
+            "Blue Razz B Pop":             { imagen: "IMG/ignite/blue-razz-b-pop.webp", stock: 0, descripcion: "Frambuesa azul dulce con un toque de caramelo ácido tipo B-Pop." },
             "Blueberry Ice":               { imagen: "IMG/ignite/blueberry-ice.webp", stock: 3, descripcion: "Arándanos jugosos con un final helado bien refrescante." },
             "Grape Ice":                   { imagen: "IMG/ignite/grape-ice.webp", stock: 2, descripcion: "Uva dulce e intensa con golpe de frío." },
-            "Green Apple":                 { imagen: "IMG/ignite/green-apple-ice.webp", stock: 2, descripcion: "Manzana verde crocante con notas ácidas." },
+            "Green Apple":                 { imagen: "IMG/ignite/green-apple-ice.webp", stock: 1, descripcion: "Manzana verde crocante con notas ácidas." },
             "Peach Berry Ice":             { imagen: "IMG/ignite/peach-berry-ice.webp", stock: 0, descripcion: "Durazno maduro y frutos rojos con un final helado." },
             "Strawberry Apple Watermelon": { imagen: "IMG/ignite/strawberry-apple-watermelon.webp", stock: 2, descripcion: "Frutilla, manzana y sandía en un blend frutal y jugoso." },
             "Strawberry Banana":           { imagen: "IMG/ignite/strawberry-banana.webp", stock: 0, descripcion: "El clásico licuado de frutilla y banana, cremoso y dulce." },
-            "Strawberry Watermelon":       { imagen: "IMG/ignite/strawberry-watermelon.webp", stock: 2, descripcion: "Frutilla dulce con sandía fresca de verano." },
+            "Strawberry Watermelon":       { imagen: "IMG/ignite/strawberry-watermelon.webp", stock: 1, descripcion: "Frutilla dulce con sandía fresca de verano." },
             "Watermelon Ice":              { imagen: "IMG/ignite/watermelon-ice.webp", stock: 1, descripcion: "Sandía dulce con un golpe helado bien marcado." }
         }
     },
