@@ -14,10 +14,20 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Comprimir el sitio (sin comentarios ni nombres legibles)
+        run: |
+          npm i --no-save esbuild@0.24.0
+          node .github/build.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./   # 👈 Esto sube todo el repo, incluyendo index.html y CNAME
+          path: ./_site
 
   deploy:
     needs: build
