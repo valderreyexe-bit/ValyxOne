@@ -44,8 +44,8 @@ const productos = {
         imagenGenerica: "IMG/ignite/peach-berry-ice.webp",
         sabores: {
             "Blue Razz B Pop":             { imagen: "IMG/ignite/blue-razz-b-pop.webp", stock: 0, descripcion: "Frambuesa azul dulce con un toque de caramelo ácido tipo B-Pop." },
-            "Blueberry Ice":               { imagen: "IMG/ignite/blueberry-ice.webp", stock: 1, descripcion: "Arándanos jugosos con un final helado bien refrescante." },
-            "Grape Ice":                   { imagen: "IMG/ignite/grape-ice.webp", stock: 1, descripcion: "Uva dulce e intensa con golpe de frío." },
+            "Blueberry Ice":               { imagen: "IMG/ignite/blueberry-ice.webp", stock: 0, descripcion: "Arándanos jugosos con un final helado bien refrescante." },
+            "Grape Ice":                   { imagen: "IMG/ignite/grape-ice.webp", stock: 0, descripcion: "Uva dulce e intensa con golpe de frío." },
             "Green Apple":                 { imagen: "IMG/ignite/green-apple-ice.webp", stock: 0, descripcion: "Manzana verde crocante con notas ácidas." },
             "Peach Berry Ice":             { imagen: "IMG/ignite/peach-berry-ice.webp", stock: 0, descripcion: "Durazno maduro y frutos rojos con un final helado." },
             "Strawberry Apple Watermelon": { imagen: "IMG/ignite/strawberry-apple-watermelon.webp", stock: 0, descripcion: "Frutilla, manzana y sandía en un blend frutal y jugoso." },
