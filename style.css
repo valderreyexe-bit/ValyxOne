@@ -1268,3 +1268,9 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .sv-rota-txt.entra { transform: translateY(70%); opacity: 0; transition: none; }
 @media (max-width: 991px) { .sv-hero-title { font-size: clamp(1.9rem, 9.4vw, 3rem); } }
 @media (prefers-reduced-motion: reduce) { .sv-rota-txt { transition: none; } }
+
+/* Líneas nuevas (nov) */
+.card-vmix .card-glow { background: #E8173A; }
+.card-bcpro .card-glow { background: #00A884; }
+.card-vmix .card-badge.promo i { color: #E8173A; }
+.card-bcpro .card-badge.promo i { color: #00A884; }

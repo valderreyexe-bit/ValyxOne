@@ -14,9 +14,9 @@ if ('serviceWorker' in navigator) {
                               dicen "Reservar" y el pedido sale como reserva.
    MODO_REPOSICION = false -> venta normal (cambialo cuando llegue el stock).
    ===================================================================== */
-const MODO_REPOSICION = false;
-const FECHA_REPOSICION = "lunes 12 / martes 13 de octubre";
-const FECHA_CORTA = "12/13 oct"; // versión corta para el aviso de arriba
+const MODO_REPOSICION = true;
+const FECHA_REPOSICION = "miércoles 18 / jueves 19 de noviembre";
+const FECHA_CORTA = "18/19 nov"; // versión corta para el aviso de arriba
 const WHATSAPP_NUMERO = "5492216205269";
 // PROMO: cada 2 vapers del pedido (de cualquier modelo, se pueden mezclar) se descuenta esto
 const DESCUENTO_POR_PAR = 1600;
@@ -94,19 +94,48 @@ const productos = {
         nombre: "Elfbar TE 30K",
         pagina: "elfbar-te-30k.html",
         tarjeta: { clase: "card-te30k", color: "#5856D6", marca: "Elfbar", modelo: "TE 30K", spec: "Pro Display · 30K", icono: "fa-bolt", desc: "Cuerpo translúcido, calada sedosa y pantalla de batería." },
-        precio: 28000,
-        promoPar: 57500,
+        precio: 30000,
+        promoPar: 58400,
         emoji: "⚡",
-        imagenGenerica: "IMG/te-cherrystrazz.webp",
+        imagenGenerica: "IMG/te-pineapplemango.webp",
         sabores: {
-            "Cherry Strazz":          { stock: 0, imagen: "IMG/te-cherrystrazz.webp", descripcion: "Cerezas dulces combinadas con frutillas ácidas y un golpe fresco." },
-            "Peach Mango Watermelon": { stock: 0, imagen: "IMG/te-peachmangowatermelon.webp", descripcion: "Durazno, mango y sandía en un blend tropical." },
-            "Pineapple Mango":        { stock: 0, imagen: "IMG/te-pineapplemango.webp", descripcion: "Ananá tropical y mango maduro." },
-            "Strawberry Ice":         { stock: 0, imagen: "IMG/te-strawberryice.webp", descripcion: "Frutillas rojas dulces con un final frío." },
-            "Bubbaloo Grape":         { stock: 0, imagen: "IMG/te-chicleuva.webp", descripcion: "Inspirado en el clásico chicle de uva." },
-            "Blueberry Ice":          { stock: 0, imagen: "IMG/te-blueberry.webp", descripcion: "Arándanos con un acabado mentolado limpio." },
-            "Green Apple Ice":        { stock: 0, imagen: "IMG/te-greenappleice.webp", descripcion: "Manzana verde crujiente con frescura helada." },
-            "Miami Mint":             { stock: 0, imagen: "IMG/te-miamimint.webp", descripcion: "Menta refrescante de perfil cítrico y limpio." }
+            "Dragon Strawnana":      { stock: 4, descripcion: "Frutilla, banana y pitaya en un mix frutal y dulce." },
+            "Pineapple Mango":       { stock: 5, imagen: "IMG/te-pineapplemango.webp", descripcion: "Ananá tropical y mango maduro." },
+            "Strawmelon Peach":      { stock: 4, descripcion: "Frutilla, sandía y durazno, jugoso y refrescante." },
+            "Bubbaloo Tutti Frutti": { stock: 4, descripcion: "Chicle tutti frutti, como el Bubbaloo de siempre." }
+        }
+    },
+    vmix: {
+        nombre: "Ignite V-Mix 40K",
+        pagina: "ignite-vmix-40k.html",
+        tarjeta: { clase: "card-vmix", color: "#E8173A", marca: "Ignite", modelo: "V-Mix 40K", spec: "2 sabores en 1 · 40K", icono: "fa-shuffle", desc: "Dos sabores en un mismo equipo: cambiás con un botón." },
+        precio: 34900,
+        promoPar: 68200,
+        emoji: "🔀",
+        imagenGenerica: "IMG/vmix/watermelon-grape-ice.webp",
+        sabores: {
+            "Cherry / Grape Ice":                 { stock: 1, es: "Cereza / uva helada", descripcion: "Cereza de un lado y uva helada del otro." },
+            "Blueberry / Strawberry":             { stock: 1, es: "Arándano / frutilla", descripcion: "Arándano de un lado y frutilla del otro." },
+            "Kiwi Passion Guava / Strawberry Ice":{ stock: 1, es: "Tropical / frutilla helada", descripcion: "Kiwi, maracuyá y guayaba de un lado; frutilla helada del otro." },
+            "Watermelon / Grape Ice":             { stock: 1, imagen: "IMG/vmix/watermelon-grape-ice.webp", es: "Sandía / uva helada", descripcion: "Sandía de un lado y uva helada del otro." },
+            "Strawberry Kiwi / Grape Kiwi":       { stock: 1, imagen: "IMG/vmix/strawberry-kiwi-grape-kiwi.webp", es: "Frutilla-kiwi / uva-kiwi", descripcion: "Frutilla con kiwi de un lado; uva con kiwi del otro." }
+        }
+    },
+    bcpro: {
+        nombre: "Elf Bar BC Pro 40K",
+        pagina: "elfbar-bc-pro-40k.html",
+        tarjeta: { clase: "card-bcpro", color: "#00A884", marca: "Elfbar", modelo: "BC Pro 40K", spec: "BC Pro · 40K", icono: "fa-tag", desc: "40.000 puffs al mejor precio de la tienda." },
+        precio: 25900,
+        promoPar: 50200,
+        emoji: "💨",
+        imagenGenerica: "IMG/bcpro/bc-pro.webp",
+        sabores: {
+            "Strawberry Kiwi":   { stock: 4, es: "Frutilla y kiwi", descripcion: "Frutilla dulce con el toque ácido del kiwi." },
+            "Blue Razz Ice":     { stock: 4, es: "Frambuesa azul helada", descripcion: "Frambuesa azul ácida con final helado." },
+            "Watermelon Peach":  { stock: 4, es: "Sandía y durazno", descripcion: "Sandía fresca con durazno maduro." },
+            "Triple Berry":      { stock: 3, es: "Frutos rojos", descripcion: "Mix de frutos rojos dulce e intenso." },
+            "Strawberry Blend":  { stock: 3, es: "Mix de frutilla", descripcion: "Distintas frutillas en un mix bien dulce." },
+            "Grape Twist":       { stock: 2, es: "Uva", descripcion: "Uva dulce con un giro ácido." }
         }
     }
 };
@@ -154,7 +183,7 @@ const IMG_RESPALDO = "IMG/perfil3.webp";
 const formatoPesos = n => "$" + n.toLocaleString('es-AR');
 const imagenDe = (linea, sabor) => productos[linea]?.sabores[sabor]?.imagen || productos[linea]?.imagenGenerica || IMG_RESPALDO;
 // Versiones livianas de cada foto: -m (tarjetas, 400px) y -t (miniaturas, 120px)
-const tamanio = (src, suf) => /^IMG\/(ignite|iceking|lostmary)\/|^IMG\/te-/.test(src) ? src.replace(/\.webp$/, suf + ".webp") : src;
+const tamanio = (src, suf) => /^IMG\/(ignite|iceking|lostmary|vmix|bcpro)\/|^IMG\/te-/.test(src) ? src.replace(/\.webp$/, suf + ".webp") : src;
 const imgMedia = src => tamanio(src, "-m");
 const imgMini = src => tamanio(src, "-t");
 // Estadísticas (Google Analytics). Si no cargó (por ejemplo, un bloqueador), no pasa nada.
@@ -924,9 +953,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "Cherry Strazz": "Cereza y frutilla ácida",
         "Pineapple Mango": "Ananá y mango",
         "Strawberry Ice": "Frutilla helada",
-        "Bubbaloo Grape": "Chicle de uva"
+        "Bubbaloo Grape": "Chicle de uva",
+        "Dragon Strawnana": "Frutilla, banana y pitaya",
+        "Strawmelon Peach": "Frutilla, sandía y durazno",
+        "Bubbaloo Tutti Frutti": "Chicle tutti frutti"
     };
-    const saborEs = (linea, sabor) => SABOR_ES[sabor] || (productos[linea].sabores[sabor].descripcion || "").split(/[,.:]/)[0];
+    const saborEs = (linea, sabor) => productos[linea].sabores[sabor].es || SABOR_ES[sabor] || (productos[linea].sabores[sabor].descripcion || "").split(/[,.:]/)[0];
 
     // "Cómo es el pedido": muchos creían que había que pagar en la página
     function crearComoPedir() {
