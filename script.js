@@ -125,8 +125,8 @@ const productos = {
         nombre: "Elf Bar BC Pro 40K",
         pagina: "elfbar-bc-pro-40k.html",
         tarjeta: { clase: "card-bcpro", color: "#00A884", marca: "Elfbar", modelo: "BC Pro 40K", spec: "BC Pro · 40K", icono: "fa-tag", desc: "La opción económica: 40.000 puffs." },
-        precio: 24500,
-        promoPar: 47400,
+        precio: 27900,
+        promoPar: 54200,
         emoji: "💨",
         imagenGenerica: "IMG/bcpro/ebcreate-bc-pro.webp",
         sabores: {
