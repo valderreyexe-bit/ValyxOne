@@ -117,9 +117,9 @@ const productos = {
         sabores: {
             "Cherry / Grape Ice":                 { stock: 1, es: "Cereza / uva helada", descripcion: "Cereza de un lado y uva helada del otro." },
             "Blueberry / Strawberry":             { stock: 1, es: "Arándano / frutilla", descripcion: "Arándano de un lado y frutilla del otro." },
-            "Kiwi Passion Guava / Strawberry Ice":{ stock: 1, es: "Tropical / frutilla helada", descripcion: "Kiwi, maracuyá y guayaba de un lado; frutilla helada del otro." },
-            "Watermelon / Grape Ice":             { stock: 1, imagen: "IMG/vmix/watermelon-grape-ice.webp", es: "Sandía / uva helada", descripcion: "Sandía de un lado y uva helada del otro." },
-            "Strawberry Kiwi / Grape Kiwi":       { stock: 1, imagen: "IMG/vmix/strawberry-kiwi-grape-kiwi.webp", es: "Frutilla-kiwi / uva-kiwi", descripcion: "Frutilla con kiwi de un lado; uva con kiwi del otro." }
+            "Kiwi Passion Guava Ice / Strawberry Ice":{ stock: 1, es: "Tropical / frutilla helada", descripcion: "Kiwi, maracuyá y guayaba de un lado; frutilla helada del otro." },
+            "Watermelon Ice / Grape Ice":         { stock: 1, imagen: "IMG/vmix/watermelon-grape-ice.webp", es: "Sandía / uva helada", descripcion: "Sandía de un lado y uva helada del otro." },
+            "Strawberry Kiwi Ice / Grape Kiwi Ice": { stock: 1, imagen: "IMG/vmix/strawberry-kiwi-grape-kiwi.webp", es: "Frutilla-kiwi / uva-kiwi", descripcion: "Frutilla con kiwi de un lado; uva con kiwi del otro." }
         }
     },
     bcpro: {
