@@ -102,7 +102,7 @@ const productos = {
             "Dragon Strawnana":      { stock: 4, descripcion: "Frutilla, banana y pitaya en un mix frutal y dulce." },
             "Pineapple Mango":       { stock: 5, imagen: "IMG/te-pineapplemango.webp", descripcion: "Ananá tropical y mango maduro." },
             "Strawmelon Peach":      { stock: 4, descripcion: "Frutilla, sandía y durazno, jugoso y refrescante." },
-            "Bubbaloo Tutti Frutti": { stock: 4, descripcion: "Chicle tutti frutti, como el Bubbaloo de siempre." }
+            "Bubbaloo Tutti Frutti": { stock: 3, descripcion: "Chicle tutti frutti, como el Bubbaloo de siempre." }
         }
     },
     vmix: {
@@ -131,10 +131,10 @@ const productos = {
         imagenGenerica: "IMG/bcpro/ebcreate-bc-pro.webp",
         sabores: {
             "Strawberry Kiwi":   { stock: 4, es: "Frutilla y kiwi", descripcion: "Frutilla dulce con el toque ácido del kiwi." },
-            "Blue Razz Ice":     { stock: 4, es: "Frambuesa azul helada", descripcion: "Frambuesa azul ácida con final helado." },
-            "Watermelon Peach":  { stock: 4, es: "Sandía y durazno", descripcion: "Sandía fresca con durazno maduro." },
+            "Blue Razz Ice":     { stock: 3, es: "Frambuesa azul helada", descripcion: "Frambuesa azul ácida con final helado." },
+            "Watermelon Peach":  { stock: 2, es: "Sandía y durazno", descripcion: "Sandía fresca con durazno maduro." },
             "Triple Berry":      { stock: 3, es: "Frutos rojos", descripcion: "Mix de frutos rojos dulce e intenso." },
-            "Strawberry Blend":  { stock: 3, es: "Mix de frutilla", descripcion: "Distintas frutillas en un mix bien dulce." },
+            "Strawberry Blend":  { stock: 1, es: "Mix de frutilla", descripcion: "Distintas frutillas en un mix bien dulce." },
             "Grape Twist":       { stock: 2, es: "Uva", descripcion: "Uva dulce con un giro ácido." }
         }
     }
