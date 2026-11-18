@@ -14,7 +14,7 @@ if ('serviceWorker' in navigator) {
                               dicen "Reservar" y el pedido sale como reserva.
    MODO_REPOSICION = false -> venta normal (cambialo cuando llegue el stock).
    ===================================================================== */
-const MODO_REPOSICION = true;
+const MODO_REPOSICION = false;
 const FECHA_REPOSICION = "miércoles 18 / jueves 19 de noviembre";
 const FECHA_CORTA = "18/19 nov"; // versión corta para el aviso de arriba
 const WHATSAPP_NUMERO = "5492216205269";
