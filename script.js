@@ -100,10 +100,9 @@ const productos = {
         imagenGenerica: "IMG/te-pineapplemango.webp",
         sabores: {
             "Dragon Strawnana":      { stock: 4, descripcion: "Frutilla, banana y pitaya en un mix frutal y dulce." },
-            "Pineapple Mango":       { stock: 4, imagen: "IMG/te-pineapplemango.webp", descripcion: "Ananá tropical y mango maduro." },
+            "Pineapple Mango":       { stock: 5, imagen: "IMG/te-pineapplemango.webp", descripcion: "Ananá tropical y mango maduro." },
             "Strawmelon Peach":      { stock: 4, descripcion: "Frutilla, sandía y durazno, jugoso y refrescante." },
-            "Bubbaloo Tutti Frutti": { stock: 4, descripcion: "Chicle tutti frutti, como el Bubbaloo de siempre." },
-            "Acai Banana Ice":       { stock: 1, es: "Açaí y banana helado", descripcion: "Açaí con banana y un final helado." }
+            "Bubbaloo Tutti Frutti": { stock: 4, descripcion: "Chicle tutti frutti, como el Bubbaloo de siempre." }
         }
     },
     vmix: {
