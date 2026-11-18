@@ -128,7 +128,7 @@ const productos = {
         precio: 24500,
         promoPar: 47400,
         emoji: "💨",
-        imagenGenerica: "IMG/bcpro/bc-pro.webp",
+        imagenGenerica: "IMG/bcpro/ebcreate-bc-pro.webp",
         sabores: {
             "Strawberry Kiwi":   { stock: 4, es: "Frutilla y kiwi", descripcion: "Frutilla dulce con el toque ácido del kiwi." },
             "Blue Razz Ice":     { stock: 4, es: "Frambuesa azul helada", descripcion: "Frambuesa azul ácida con final helado." },
