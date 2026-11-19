@@ -24,9 +24,10 @@ const DESCUENTO_POR_PAR = 1600;
 /* =====================================================================
    CATÁLOGO Y STOCK
    ---------------------------------------------------------------------
-   ⚠️ El stock NO baja solo: la web es estática. Cada vez que vendas una
-   unidad, restale 1 al "stock" de ese sabor acá y volvé a subir este
-   archivo. stock 0 = "Sin stock", 1 = "Última unidad", 2+ = "Quedan N".
+   ✅ El stock y el precio se leen SOLOS del panel de Santa Vape
+   (valderreyexe-bit.github.io/stock-vapers). Vendés en el panel y la web
+   se actualiza sola. Los números de acá abajo son solo un respaldo por si
+   el panel no responde. stock 0 = "Sin stock", 1 = "Última unidad".
 
    Precio y promo de cada línea se editan SOLO acá (el carrito y el
    mensaje de WhatsApp leen de este objeto).
@@ -179,6 +180,78 @@ const ENTREGAS = [
 // Precio de 2 unidades de un mismo modelo, según la promo general
 Object.values(productos).forEach(p => { p.promoPar = p.precio * 2 - DESCUENTO_POR_PAR; });
 
+/* =====================================================================
+   STOCK EN VIVO DESDE EL PANEL
+   ---------------------------------------------------------------------
+   Al abrir la página se pide al panel cuánto queda de cada sabor (ya
+   descontadas las reservas) y su precio. Si el panel tarda más de 1,5 s
+   o no responde, se usa lo último que se vio o, si no, los números de
+   arriba. Un sabor nuevo cargado en el panel aparece solo en la web.
+   ===================================================================== */
+const PANEL_STOCK_URL = "https://bjoftyzgyrleaqmwabas.supabase.co/rest/v1/rpc/stock_web";
+const PANEL_KEY = "sb_publishable_0T_u4xSdn5KzwahxFG2Lrg_FkdlJeUL";
+const PANEL_CACHE = "sv_stock_panel";
+function lineaDelPanel(modelo) {
+    const m = String(modelo || "").toLowerCase();
+    if (/te ?30k/.test(m)) return "te30k";
+    if (/v-?mix/.test(m)) return "vmix";
+    if (/bc ?pro/.test(m)) return "bcpro";
+    if (/ice ?king/.test(m)) return "iceking";
+    if (/lost ?mary/.test(m)) return "lostmary";
+    if (/ignite/.test(m)) return "ignite";
+    return null;
+}
+function aplicarStockPanel(filas) {
+    if (!Array.isArray(filas) || !filas.length) return false;
+    const porLinea = {};
+    filas.forEach(f => { const l = lineaDelPanel(f.modelo); if (l && productos[l]) (porLinea[l] = porLinea[l] || []).push(f); });
+    Object.entries(porLinea).forEach(([l, fs]) => {
+        const p = productos[l];
+        Object.values(p.sabores).forEach(s => { s.stock = 0; });
+        fs.forEach(f => {
+            const sabor = String(f.sabor || "").trim();
+            if (!sabor) return;
+            const clave = Object.keys(p.sabores).find(k => k.toLowerCase() === sabor.toLowerCase()) || sabor;
+            if (!p.sabores[clave]) p.sabores[clave] = { descripcion: "" };
+            p.sabores[clave].stock = (p.sabores[clave].stock || 0) + Math.max(0, f.disponibles | 0);
+        });
+        const precio = Math.max(0, ...fs.map(f => Number(f.precio) || 0));
+        if (precio > 0) { p.precio = precio; p.promoPar = precio * 2 - DESCUENTO_POR_PAR; }
+    });
+    return true;
+}
+// 1) Lo último que se vio (al instante)
+try {
+    const c = JSON.parse(localStorage.getItem(PANEL_CACHE) || "null");
+    if (c && Date.now() - c.t < 7 * 864e5) aplicarStockPanel(c.filas);
+} catch (e) {}
+// 2) Lo actual del panel
+let paginaArrancada = false;
+const stockDelPanel = fetch(PANEL_STOCK_URL, {
+    method: "POST",
+    headers: { apikey: PANEL_KEY, Authorization: "Bearer " + PANEL_KEY, "Content-Type": "application/json" },
+    body: "{}", cache: "no-store"
+}).then(r => (r.ok ? r.json() : null)).then(filas => {
+    if (!Array.isArray(filas) || !filas.length) return;
+    try { localStorage.setItem(PANEL_CACHE, JSON.stringify({ t: Date.now(), filas })); } catch (e) {}
+    if (!paginaArrancada) aplicarStockPanel(filas);
+}).catch(() => {});
+function arrancarConStock(fn) {
+    const dom = new Promise(r => (document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", r) : r()));
+    const espera = new Promise(r => setTimeout(r, 1500));
+    let listo = false;
+    const go = () => {
+        if (listo) return; listo = true; paginaArrancada = true;
+        // Precio fijo escrito en la página de cada producto: se pone el del panel
+        document.querySelectorAll("[data-product] .pdp-precio").forEach(el => {
+            const p = productos[el.closest("[data-product]").dataset.product];
+            if (p && p.precio) el.textContent = formatoPesos(p.precio);
+        });
+        fn();
+    };
+    dom.then(() => Promise.race([stockDelPanel, espera])).then(go, go);
+}
+
 const IMG_RESPALDO = "IMG/perfil3.webp";
 const formatoPesos = n => "$" + n.toLocaleString('es-AR');
 const imagenDe = (linea, sabor) => productos[linea]?.sabores[sabor]?.imagen || productos[linea]?.imagenGenerica || IMG_RESPALDO;
@@ -203,7 +276,7 @@ document.addEventListener("error", e => {
     img.src = IMG_RESPALDO;
 }, true);
 
-document.addEventListener("DOMContentLoaded", () => {
+arrancarConStock(() => {
     // 1. MODAL VERIFICACIÓN EDAD
     const popup = document.getElementById("age-verification");
     const btnSi = document.getElementById("btn-si");
