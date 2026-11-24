@@ -94,6 +94,7 @@ const productos = {
     te30k: {
         nombre: "Elfbar TE 30K",
         pagina: "elfbar-te-30k.html",
+        urgencia: true, // en vez de "Quedan N" muestra "Últimas unidades" en todos sus sabores
         tarjeta: { clase: "card-te30k", color: "#5856D6", marca: "Elfbar", modelo: "TE 30K", spec: "Pro Display · 30K", icono: "fa-bolt", desc: "Cuerpo translúcido, calada sedosa y pantalla de batería." },
         precio: 30000,
         promoPar: 58400,
@@ -391,6 +392,7 @@ arrancarConStock(() => {
             const color = t.color || "#007AFF";
             let detalle, claseDetalle = "";
             if (stock <= 0) { detalle = "Sin stock por ahora"; claseDetalle = "agotado"; }
+            else if (p.urgencia) { detalle = "🔥 ¡Últimas unidades!"; claseDetalle = "pocas"; }
             else if (stock <= 5) { detalle = `${conStock} ${conStock === 1 ? "sabor" : "sabores"} · últimas ${stock} unidades`; claseDetalle = "pocas"; }
             else detalle = `${conStock} sabores · quedan ${stock}`;
             const promo = p.promoPar && stock > 0
@@ -421,6 +423,7 @@ arrancarConStock(() => {
             const t = p.tarjeta || {};
             let estado, clase = "";
             if (stock <= 0) { estado = "Sin stock por ahora"; clase = "agotado"; }
+            else if (p.urgencia) { estado = "🔥 ¡Últimas unidades!"; clase = "pocas"; }
             else if (stock <= 5) { estado = `Últimas ${stock} unidades`; clase = "pocas"; }
             else estado = `${conStock} sabores disponibles`;
             const promo = p.promoPar && stock > 0 ? `<span class="vit-promo">Llevando 2: ${formatoPesos(p.promoPar)}</span>` : "";
@@ -474,7 +477,7 @@ arrancarConStock(() => {
         if (!lineas.length) { if (seccion) seccion.hidden = true; return; }
         cont.innerHTML = lineas.map(({ id, p, stock }) => {
             const t = p.tarjeta || {};
-            const estado = stock <= 5 ? `Últimas ${stock} unidades` : `${Object.values(p.sabores).filter(x => x.stock > 0).length} sabores`;
+            const estado = p.urgencia ? "🔥 Últimas unidades" : stock <= 5 ? `Últimas ${stock} unidades` : `${Object.values(p.sabores).filter(x => x.stock > 0).length} sabores`;
             return `
             <div class="vit vit-cross" style="${estiloLinea(t)}">
                 <a href="${p.pagina}" class="vit-link" aria-label="Ver ${p.nombre}"></a>
@@ -512,7 +515,7 @@ arrancarConStock(() => {
         const nombres = Object.keys(p.sabores).sort((a, b) => (p.sabores[b].stock > 0) - (p.sabores[a].stock > 0));
         hoja.querySelector(".hoja-lista").innerHTML = nombres.map(sabor => {
             const st = p.sabores[sabor].stock, q = enCarritoDe(hojaLinea, sabor);
-            const etiqueta = st <= 0 ? "Sin stock" : st === 1 ? "Última unidad" : `Quedan ${st}`;
+            const etiqueta = st <= 0 ? "Sin stock" : p.urgencia ? "🔥 Últimas unidades" : st === 1 ? "Última unidad" : `Quedan ${st}`;
             return `
             <li class="hoja-fila${st <= 0 ? " agotado" : ""}">
                 <img src="${imgMini(imagenDe(hojaLinea, sabor))}" alt="" width="44" height="44" loading="lazy">
@@ -1049,8 +1052,9 @@ arrancarConStock(() => {
     }
 
     // 4. FICHA DE PRODUCTO: GRILLA DE SABORES + CANTIDAD CON − / + + BARRA FIJA DE COMPRA
-    function etiquetaStock(stock) {
+    function etiquetaStock(stock, linea) {
         if (stock <= 0) return { texto: "Sin stock", clase: "st-out" };
+        if (linea && productos[linea] && productos[linea].urgencia) return { texto: "🔥 ¡ÚLTIMAS UNIDADES!", clase: "st-ultimas" };
         if (stock === 1) return { texto: "Última unidad", clase: "st-low" };
         return { texto: `Quedan ${stock}`, clase: "st-ok" };
     }
@@ -1109,7 +1113,7 @@ arrancarConStock(() => {
             const qty = enCarritoDe(linea, elegido);
 
             if (stockInfo) {
-                const e = qty > 0 && qty >= stock ? { texto: "Ya tenés todas", clase: "st-max" } : etiquetaStock(stock);
+                const e = qty > 0 && qty >= stock ? { texto: "Ya tenés todas", clase: "st-max" } : etiquetaStock(stock, linea);
                 stockInfo.innerHTML = `<span class="flavor-stock ${e.clase}">${e.texto}</span>`;
             }
 
@@ -1278,7 +1282,7 @@ arrancarConStock(() => {
             grid.setAttribute('aria-label', 'Sabores');
             nombres.forEach(sabor => {
                 const st = datos.sabores[sabor].stock;
-                const e = etiquetaStock(st);
+                const e = etiquetaStock(st, linea);
                 const ch = document.createElement('button');
                 ch.type = 'button';
                 ch.className = 'sabor-chip' + (st <= 0 ? ' agotado' : '');

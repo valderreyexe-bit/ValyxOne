@@ -1274,3 +1274,10 @@ body.no-scroll .pdp-barra, body.popup-active .pdp-barra, body.cart-open .pdp-bar
 .card-bcpro .card-glow { background: #00A884; }
 .card-vmix .card-badge.promo i { color: #E8173A; }
 .card-bcpro .card-badge.promo i { color: #00A884; }
+
+/* ---- "Últimas unidades" (urgencia) ---- */
+.sabor-chip .sabor-chip-stock.st-ultimas { align-self: flex-start; display: inline-block; max-width: 100%; margin-top: 3px; padding: 2px 7px !important; border-radius: 9px; background: linear-gradient(90deg, #FF3B30, #FF9500) !important; color: #FFFFFF; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.02em; line-height: 1.2; white-space: normal; animation: sv-ultimas 1.6s ease-in-out infinite; }
+.sabor-chip.activo .sabor-chip-stock.st-ultimas { animation-duration: 1.1s; }
+@keyframes sv-ultimas { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.55); transform: scale(1); } 50% { box-shadow: 0 0 0 5px rgba(255, 59, 48, 0); transform: scale(1.04); } }
+.flavor-stock.st-ultimas { background: linear-gradient(90deg, #FF3B30, #FF9500); color: #FFFFFF; font-weight: 800; animation: sv-ultimas 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .sabor-chip .sabor-chip-stock.st-ultimas, .flavor-stock.st-ultimas { animation: none; } }
